@@ -1,8 +1,60 @@
 <?php
 
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+defined('BASEPATH') OR exit('No direct script access allowed');
 
+/**
+ * Controller para ações da página inicial do sistema
+ * Executada por padrão
+ */
+class Login extends CI_Controller {
+
+  //Função para abrir a listagem de contratos dos clientes
+  public function index() {
+    $this->load->view('login/login.php');
+  }
+  
+  //Função para abrir a página inicial após logar
+  public function recuperar() {
+    $this->load->view('login/esqueci-senha.php');
+  }
+
+  //Função para abrir a página inicial após logar
+  public function autenticar() {
+    $this->load->model("usuario_model");
+    
+    $email = $this->input->post("email");
+    $senha = md5($this->input->post("senha"));
+    
+    $usuario = $this->usuario_model->buscaPorEmailESenha($email,$senha);
+    if($usuario){
+      $this->session->set_userdata("usuario_logado", $usuario);
+      redirect("/");
+    } else {
+      $dados = array("mensagem" => "E-mail ou senha incorretos");
+      $this->load->view("login/login", $dados);
+    }
+  }
+  
+  //Função de Logout
+  public function logout() {
+    $this->session->unset_userdata("usuario_logado");
+    $this->load->view("login/login");
+  }
+  
+    //Função para abrir a listagem de contratos dos clientes
+//  public function inserirnovo() {
+//    
+//    //gravar na tabela usuario:
+//    //idusuario, nome, email, senha, cpf, nvlacesso, datacriacaousuario, liberado
+//    $usuario = array(
+//      "nome" => $this->input->post("nomecompleto"),
+//      "email" => $this->input->post("email"),
+//      "senha" => md5($this->input->post("senha")) 
+//    );
+//    
+//    $this->load->model("Usuario");
+//    $this->Usuarios->salva($usuario);
+//    $this->load->view("login/login.php");
+//  }
+  
+}

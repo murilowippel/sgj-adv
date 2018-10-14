@@ -10,7 +10,9 @@ class Dashboard extends CI_Controller {
 
   //Função para abrir a página inicial após logar
   public function index() {
-    $this->load->view('cabecalho.php');
+    autoriza();
+    $dados['titulopagina'] = "Página Inicial";
+    $this->load->view('cabecalho.php', $dados);
     $this->load->view('dashboard/dashboard.php');
     $this->load->view('rodape.php');
   }

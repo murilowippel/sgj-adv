@@ -11,7 +11,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <meta name="description" content="">
     <meta name="author" content="Murilo Henrique Wippel">
 
-    <title>Página Inicial</title>
+    <title><?php echo $titulopagina ?> - SGJ</title>
 
     <link href="<?= base_url("css/bootstrap.min.css") ?>" rel="stylesheet">
     <!--<link href="<?= base_url("fontawesome-free/css/all.min.css") ?>" rel="stylesheet" type="text/css">-->
@@ -25,7 +25,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
     <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
 
-      <a class="navbar-brand mr-1" href="<?= base_url("index.php") ?>">SGJ - Sistema de Gestão Jurídica</a>
+      <a class="navbar-brand mr-1" href="<?= base_url("index.php") ?>">SGJ</a>
 
       <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
         <i class="fas fa-bars"></i>
@@ -59,18 +59,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         </li>
         <li class="nav-item dropdown no-arrow mx-1">
           <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="fas fa-envelope fa-fw"></i>
-            <span class="badge badge-danger">7</span>
+            <?= $this->session->userdata['usuario_logado']['nome']; ?>
           </a>
-          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="messagesDropdown">
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Another action</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Something else here</a>
-          </div>
-        </li>
-        <li class="nav-item dropdown no-arrow">
-          <span style="color: #FFF;">Bem-vindo, Murilo</span>
         </li>
         <li class="nav-item dropdown no-arrow">
           <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -80,7 +70,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <a class="dropdown-item" href="#">Configurações</a>
             <a class="dropdown-item" href="#">Log de Acessos</a>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">Sair</a>
+            <a class="dropdown-item" href="" data-toggle="modal" data-target="#logoutModal">Sair</a>
           </div>
         </li>
       </ul>

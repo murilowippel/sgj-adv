@@ -10,14 +10,18 @@ class Contratos extends CI_Controller {
 
   //Função para abrir a listagem de contratos dos clientes
   public function index() {
-    $this->load->view('cabecalho.php');
+    autoriza();
+    $dados['titulopagina'] = "Contratos";
+    $this->load->view('cabecalho.php', $dados);
     $this->load->view('contratos/contratos.php');
     $this->load->view('rodape.php');
   }
 
   //Função para abrir a página inicial após logar
   public function novo() {
-    $this->load->view('cabecalho.php');
+    autoriza();
+    $dados['titulopagina'] = "Cadastro de Contrato";
+    $this->load->view('cabecalho.php', $dados);
     $this->load->view('contratos/novo.php');
     $this->load->view('rodape.php');
   }

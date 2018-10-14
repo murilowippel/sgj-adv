@@ -10,14 +10,18 @@ class Processos extends CI_Controller {
 
   //Função para abrir a listagem de processos
   public function index() {
-    $this->load->view('cabecalho.php');
+    autoriza();
+    $dados['titulopagina'] = "Processos";
+    $this->load->view('cabecalho.php', $dados);
     $this->load->view('processos/processos.php');
     $this->load->view('rodape.php');
   }
 
   //Função para abrir a página inicial após logar
   public function novo() {
-    $this->load->view('cabecalho.php');
+    autoriza();
+    $dados['titulopagina'] = "Cadastro de Processo";
+    $this->load->view('cabecalho.php', $dados);
     $this->load->view('processos/novo.php');
     $this->load->view('rodape.php');
   }

@@ -10,7 +10,6 @@
       <!-- Page Content -->
       <h1>Página Inicial</h1>
       <hr>
-      
       conteúdo aqui
     </div>
     <!--CONTAINER DE CONTEÚDOS-->
