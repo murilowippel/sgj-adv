@@ -37,7 +37,7 @@
                   <td><?= $cliente['rua'] . " " . $cliente['numero'] . " " . $cliente['bairro'] . " - " . $cliente['cidade'] . " (" . $cliente['estado'] . ")" ?></td>
                   <td><?= $cliente['profissao'] ?></td>
                   <td><?= $cliente['telefone'] . " " . $cliente['celular'] ?></td>
-                  <td style="text-align: center;"><a href="<?= base_url("index.php/clientes/editar?idcliente=") ?><?= $cliente['idcliente'] ?>" class="btn btn-primary">Editar</a></td>
+                  <td style="text-align: center;"><a href="<?= base_url("index.php/clientes/") ?><?= $cliente['idcliente'] ?>" class="btn btn-primary">Editar</a></td>
                   <td style="text-align: center;">
                     <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deletaModal">
                       Apagar

@@ -11,11 +11,12 @@
           <div class="form-group col-md-4">
             <label for="nome"><strong>Nome:</strong></label>
             <input type="text" name="nome" class="form-control" id="nome" placeholder="Nome Completo" value="<?php if(isset($cliente)) { echo $cliente['nome']; } ?>">
+            <?= form_error("nome") ?>
           </div>
           <div class="form-group col-md-3">
             <label for="cpfcnpj"><strong>CPF/CNPJ:</strong></label>
-            <input type="text" name="cpfcnpj" class="form-control" id="cpfcnpj" aria-describedby="cpfcnpjHelp" placeholder="Ex: 123.456.789-10" value="<?php if(isset($cliente)) { echo $cliente['cpfcnpj']; } ?>">
-            <small id="cpfcnpjHelp" class="form-text text-muted">Informe o número do documento com a pontuação.</small>
+            <input type="text" name="cpfcnpj" class="form-control" id="cpfcnpj" placeholder="Ex: 123.456.789-10" value="<?php if(isset($cliente)) { echo $cliente['cpfcnpj']; } ?>">
+            <?= form_error("cpfcnpj") ?>
           </div>
           <div class="form-group col-md-3">
             <label for="tppessoa"><strong>Tipo:</strong></label>
@@ -31,6 +32,7 @@
                 Jurídica
               </label>
             </div>
+            <?= form_error("tppessoa") ?>
           </div>
         </div>
 
@@ -38,10 +40,12 @@
           <div class="form-group col-md-4">
             <label for="rua"><strong>Endereço</strong></label>
             <input type="text" name="rua" class="form-control" id="rua" placeholder="Rua do Cliente" value="<?php if(isset($cliente)) { echo $cliente['rua']; } ?>">
+            <?= form_error("rua") ?>
           </div>
           <div class="form-group col-sm-1">
             <label for="numero"><strong>Número</strong></label>
             <input type="text" name="numero" class="form-control" id="numero" placeholder="100" value="<?php if(isset($cliente)) { echo $cliente['numero']; } ?>">
+            <?= form_error("numero") ?>
           </div>
           <div class="form-group col-md-3">
             <label for="complemento"><strong>Complemento</strong></label>
@@ -53,10 +57,12 @@
           <div class="form-group col-md-4">
             <label for="bairro"><strong>Bairro</strong></label>
             <input type="text" name="bairro" class="form-control" id="bairro" placeholder="Centro" value="<?php if(isset($cliente)) { echo $cliente['bairro']; } ?>">
+            <?= form_error("bairro") ?>
           </div>
           <div class="form-group col-md-2">
             <label for="cep"><strong>CEP</strong></label>
             <input type="text" name="cep" class="form-control" id="cep" placeholder="89150-000" value="<?php if(isset($cliente)) { echo $cliente['cep']; } ?>">
+            <?= form_error("cep") ?>
           </div>
         </div>
 
@@ -64,6 +70,7 @@
           <div class="form-group col-md-4">
             <label for="cidade"><strong>Cidade</strong></label>
             <input type="text" name="cidade" class="form-control" id="cidade" placeholder="São Paulo" value="<?php if(isset($cliente)) { echo $cliente['cidade']; } ?>">
+            <?= form_error("cidade") ?>
           </div>
           <div class="form-group col-md-3">
             <label for="estado"><strong>Estado</strong></label>
@@ -97,6 +104,7 @@
               <option value="SE" <?php if(isset($cliente) && $cliente['estado'] == "SE") { echo "selected"; } ?>>Sergipe</option>
               <option value="TO" <?php if(isset($cliente) && $cliente['estado'] == "TO") { echo "selected"; } ?>>Tocantins</option>
             </select>
+            <?= form_error("estado") ?>
           </div>
         </div>
 
@@ -104,6 +112,7 @@
           <div class="form-group col-md-4">
             <label for="datanascimento"><strong>Data de Nascimento</strong></label>
             <input type="text" name="datanascimento" class="form-control" id="datanascimento" placeholder="Informe a Data de Nascimento" value="<?php if(isset($cliente)) { echo dataPostgresParaPtBr($cliente['datanascimento']); } ?>">
+            <?= form_error("datanascimento") ?>
           </div>
           <div class="form-group col-md-3">
             <label for="profissao"><strong>Profissão</strong></label>
@@ -119,6 +128,7 @@
           <div class="form-group col-md-3">
             <label for="celular"><strong>Celular</strong></label>
             <input type="text" name="celular" class="form-control" id="celular" placeholder="Informe o Celular" value="<?php if(isset($cliente)) { echo $cliente['celular']; } ?>">
+            <?= form_error("celular") ?>
           </div>
         </div>
         <div class="form-row">

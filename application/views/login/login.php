@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="<?=base_url('img')?>/favicon.png" type="image/png">
+    <link rel="icon" href="<?= base_url('img') ?>/favicon.png" type="image/png">
 
     <title>SGJ - Sistema de Gestão Jurídica</title>
 
@@ -30,8 +30,10 @@
       <div class="card card-login mx-auto mt-5">
         <div class="card-header">Login</div>
         <div class="card-body">
-          <?php 
-          if(isset($mensagem)) { ?>
+          <?php if ($this->session->flashdata("danger")) : ?>
+            <p class="alert alert-danger"><?= $this->session->flashdata("danger") ?></p>
+          <?php endif ?>
+          <?php if (isset($mensagem)) { ?>
             <p class="alert alert-warning" role="alert"><?= $mensagem ?></p>
           <?php } ?>
           <form action="<?= base_url("index.php/login/autenticar") ?>" method="post">
