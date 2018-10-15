@@ -10,7 +10,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="Murilo Henrique Wippel">
-
+    <link rel="icon" href="<?=base_url('img')?>/favicon.png" type="image/png">
+    
     <title><?php echo $titulopagina ?> - SGJ</title>
 
     <link href="<?= base_url("css/bootstrap.min.css") ?>" rel="stylesheet">
@@ -18,13 +19,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
     <link href="<?= base_url("css/dataTables.bootstrap4.css") ?>" rel="stylesheet">
     <link href="<?= base_url("css/sb-admin.css") ?>" rel="stylesheet">
-
+    
   </head>
 
   <body id="page-top">
 
     <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
-
+      <img style="width:32px;height: 32px;margin-right: 10px;" src="<?= base_url("img/") ?>mace.png" />
       <a class="navbar-brand mr-1" href="<?= base_url("index.php") ?>">SGJ</a>
 
       <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">

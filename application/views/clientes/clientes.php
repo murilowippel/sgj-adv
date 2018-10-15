@@ -1,64 +1,73 @@
-<!--CONTAINER DE CONTEÚDOS-->
 <div id="content-wrapper">
   <div class="container-fluid">
-    <!-- Breadcrumbs-->
-    <ol class="breadcrumb">
-      <li class="breadcrumb-item">
-        <a href="<?= base_url("index.php") ?>">Página Inicial</a>
-      </li>
-      <li class="breadcrumb-item active">Clientes</li>
-    </ol>
-    <!-- Page Content -->
     <h1>Clientes</h1>
     <hr>
+    <!--Conteúdo da Página-->
     <a href="<?= base_url("index.php/clientes/novo") ?>" class="btn btn-primary">Novo</a>
     <div class="clear"></div>
     <hr>
-    <!-- DataTables Example -->
-    <div class="card mb-3">
+    <?php if ($this->session->flashdata("success")) : ?>
+      <p class="alert alert-success"><?= $this->session->flashdata("success") ?></p>
+    <?php endif ?>
 
+    <?php if ($this->session->flashdata("danger")) : ?>
+      <p class="alert alert-danger"><?= $this->session->flashdata("danger") ?></p>
+    <?php endif ?>
+    <!--Tabela-->
+    <div class="card mb-3">
       <div class="card-body">
         <div class="table-responsive">
           <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
             <thead>
               <tr>
                 <th>Nome</th>
-                <th>Profissão</th>
+                <th>CPF/CNPJ</th>
                 <th>Endereço</th>
-                <th>Idade</th>
-                <th>Telefone/Celular</th>
+                <th>Profissão</th>
+                <th>Telefones</th>
                 <th></th>
                 <th></th>
               </tr>
             </thead>
-            <tbody>
-              <tr>
-                <td>Murilo Henrique Wippel</td>
-                <td>Programador</td>
-                <td>Rua Carlos Laemmle 203 - Centro - Presidente Getúlio (SC)</td>
-                <td>21</td>
-                <td>(47)99162-6652</td>
-                <td style="text-align: center;"><a href="<?= base_url("index.php/clientes/novo") ?>" class="btn btn-primary">Editar</a></td>
-                <td style="text-align: center;"><a href="<?= base_url("index.php/clientes/novo") ?>" class="btn btn-danger">Apagar</a></td>
-              </tr>
-            </tbody>
-            <tbody>
-              <tr>
-                <td>Jullian Hermann Creutzberg</td>
-                <td>Orientador</td>
-                <td>Rua do Jullian</td>
-                <td>28</td>
-                <td>(47)99999-9999</td>
-                <td style="text-align: center;"><a href="<?= base_url("index.php/clientes/novo") ?>" class="btn btn-primary">Editar</a></td>
-                <td style="text-align: center;"><a href="<?= base_url("index.php/clientes/novo") ?>" class="btn btn-danger">Apagar</a></td>
-              </tr>
-            </tbody>
+            <?php foreach ($clientes as $cliente) : ?>
+              <tbody>
+                <tr>
+                  <td><?= $cliente['nome'] ?></td>
+                  <td><?= $cliente['cpfcnpj'] ?></td>
+                  <td><?= $cliente['rua'] . " " . $cliente['numero'] . " " . $cliente['bairro'] . " - " . $cliente['cidade'] . " (" . $cliente['estado'] . ")" ?></td>
+                  <td><?= $cliente['profissao'] ?></td>
+                  <td><?= $cliente['telefone'] . " " . $cliente['celular'] ?></td>
+                  <td style="text-align: center;"><a href="<?= base_url("index.php/clientes/editar?idcliente=") ?><?= $cliente['idcliente'] ?>" class="btn btn-primary">Editar</a></td>
+                  <td style="text-align: center;">
+                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deletaModal">
+                      Apagar
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            <?php endforeach ?>
           </table>
         </div>
       </div>
-      <div class="card-footer small text-muted">Atualizado em 11:59</div>
     </div>
-
-
   </div>
-  <!--CONTAINER DE CONTEÚDOS-->
+
+  <div class="modal fade" id="deletaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Apagar Cliente</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Deseja apagar o cliente selecionado?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+          <a href="<?= base_url("index.php/clientes/deleta?idcliente=") ?><?= $cliente['idcliente'] ?>" class="btn btn-danger">Sim</a>
+        </div>
+      </div>
+    </div>
+  </div>

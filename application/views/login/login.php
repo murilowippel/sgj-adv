@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
+    <link rel="icon" href="<?=base_url('img')?>/favicon.png" type="image/png">
 
     <title>SGJ - Sistema de Gestão Jurídica</title>
 
@@ -22,9 +23,10 @@
 
   </head>
 
-  <body class="bg-dark">
+  <body style="background-image: url('<?= base_url("img/") ?>login-wallpaper.jpg');">
 
     <div class="container">
+      <p class="logo-login">SGJ - Sistema de Gestão Jurídica</p>
       <div class="card card-login mx-auto mt-5">
         <div class="card-header">Login</div>
         <div class="card-body">

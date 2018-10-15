@@ -1,5 +1,5 @@
 <!-- Sticky Footer -->
-<footer class="sticky-footer">
+<footer class="sticky-footer" style="height: 4%;">
   <div class="container my-auto">
     <div class="copyright text-center my-auto">
       <span>Copyright © SGJ - Sistema de Gestão Jurídica 2018</span>
@@ -32,9 +32,9 @@
       </div>
     </div>
   </div>
-</div>    
-
+</div>
 <script src="<?= base_url("js/jquery.min.js") ?>"></script>
+<script src="<?= base_url("js/jquery.mask.js") ?>"></script>
 <script src="<?= base_url("js/bootstrap.bundle.min.js") ?>"></script>
 <script src="<?= base_url("js/jquery.easing.min.js") ?>"></script>
 <script src="<?= base_url("js/Chart.min.js") ?>"></script>

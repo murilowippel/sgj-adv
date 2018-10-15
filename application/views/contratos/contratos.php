@@ -1,13 +1,6 @@
 <!--CONTAINER DE CONTEÚDOS-->
 <div id="content-wrapper">
   <div class="container-fluid">
-    <!-- Breadcrumbs-->
-    <ol class="breadcrumb">
-      <li class="breadcrumb-item">
-        <a href="<?= base_url("index.php") ?>">Página Inicial</a>
-      </li>
-      <li class="breadcrumb-item active">Contratos</li>
-    </ol>
     <!-- Page Content -->
     <h1>Contratos</h1>
     <hr>
