@@ -36,11 +36,11 @@ class Clientes extends CI_Controller {
 
     //Carrega a view
     $this->load->view('cabecalho.php', $dados);
-    $this->load->view('clientes/novo.php');
+    $this->load->view('clientes/formulario.php');
     $this->load->view('rodape.php');
   }
 
-  //Função para abrir o formulário de cadastro de clientes
+  //Função para abrir editar um cliente
   public function editar($idcliente) {
     //Valida a sessão
     autoriza();
@@ -49,25 +49,26 @@ class Clientes extends CI_Controller {
     $dados['titulopagina'] = "Cadastro de Cliente";
 
     //Carregar registro pelo id
-
     $this->load->model("cliente_model");
     $cliente['cliente'] = $this->cliente_model->buscaCliente($idcliente);
 
     //Carrega a view
     $this->load->view('cabecalho.php', $dados);
-    $this->load->view('clientes/novo.php', $cliente);
+    $this->load->view('clientes/formulario.php', $cliente);
     $this->load->view('rodape.php');
   }
 
-  //Função para abrir o formulário de cadastro de clientes
-  public function deleta() {
+  //Função para excluir um cliente
+  public function deletar() {
     //Valida a sessão
     autoriza();
 
+    //Carregar id e apagar registro com o id
     $idcliente = $this->input->get('idcliente');
     $this->load->model("cliente_model");
     $this->cliente_model->deleta($idcliente);
 
+    //Mensagem de sucesso e redirecionar
     $this->session->set_flashdata("success", "Cliente apagado com sucesso");
     redirect("/clientes");
   }
