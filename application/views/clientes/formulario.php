@@ -21,12 +21,6 @@
     
     <div class="col-md-10">
       <form id="formClientes" action="<?= base_url("clientes/gravar") ?>" method="post">
-        <div class="col-md-12" style="text-align: right;">
-          <a href="<?= base_url("clientes") ?>" class="btn btn-danger">Voltar</a>
-          <a href="<?= base_url("clientes/novo") ?>" class="btn btn-primary">Limpar</a>
-          <!--<button id="limpar" type="button" class="btn btn-primary">Limpar</button>;-->
-          <button type="submit" class="btn btn-success" style="margin-right: 5px">Gravar</button>
-        </div>
         <div class="borda">
           <input type="hidden" name="idcliente" value="<?php if (isset($cliente)) { echo $cliente['idcliente']; } ?>" />
 
@@ -155,9 +149,15 @@
               <input type="text" name="email" class="form-control" id="email" placeholder="" value="<?php if (isset($cliente)) { echo $cliente['email']; } ?>">
             </div>
           </div>
-
+          <div class="col-md-12" style="text-align: right;">
+          <a href="<?= base_url("clientes") ?>" class="btn btn-danger">Voltar</a>
+          <a href="<?= base_url("clientes/novo") ?>" class="btn btn-primary">Limpar</a>
+          <!--<button id="limpar" type="button" class="btn btn-primary">Limpar</button>;-->
+          <button type="submit" class="btn btn-success" style="margin-right: 5px">Gravar</button>
+        </div>
         
         </div>
+        
       </form>
     </div>
 
