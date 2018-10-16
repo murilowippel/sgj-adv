@@ -3,9 +3,11 @@
     <h1>Clientes</h1>
     <hr>
     <!--Conteúdo da Página-->
-    <a href="<?= base_url("index.php/clientes/novo") ?>" class="btn btn-primary">Novo</a>
+    <div style="width: 100%; text-align: right;">
+      <a href="<?= base_url("clientes/novo") ?>" style="margin-right: 20px; margin-bottom: 20px;" class="btn btn-primary">Novo Cliente</a>
+    </div>
     <div class="clear"></div>
-    <hr>
+    <!--<hr>-->
     <?php if ($this->session->flashdata("success")) : ?>
       <p class="alert alert-success"><?= $this->session->flashdata("success") ?></p>
     <?php endif ?>
@@ -37,7 +39,7 @@
                   <td><?= $cliente['rua'] . " " . $cliente['numero'] . " " . $cliente['bairro'] . " - " . $cliente['cidade'] . " (" . $cliente['estado'] . ")" ?></td>
                   <td><?= $cliente['profissao'] ?></td>
                   <td><?= $cliente['telefone'] . " " . $cliente['celular'] ?></td>
-                  <td style="text-align: center;"><a href="<?= base_url("index.php/clientes/") ?><?= $cliente['idcliente'] ?>" class="btn btn-primary">Editar</a></td>
+                  <td style="text-align: center;"><a href="<?= base_url("/clientes/") ?><?= $cliente['idcliente'] ?>" class="btn btn-primary">Editar</a></td>
                   <td style="text-align: center;">
                     <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deletaModal">
                       Apagar
@@ -66,7 +68,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-          <a href="<?= base_url("index.php/clientes/deleta?idcliente=") ?><?= $cliente['idcliente'] ?>" class="btn btn-danger">Sim</a>
+          <a href="<?= base_url("/clientes/deletar?idcliente=") ?><?= $cliente['idcliente'] ?>" class="btn btn-danger">Sim</a>
         </div>
       </div>
     </div>

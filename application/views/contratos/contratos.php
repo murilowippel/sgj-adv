@@ -4,7 +4,7 @@
     <!-- Page Content -->
     <h1>Contratos</h1>
     <hr>
-    <a href="<?= base_url("index.php/contratos/novo") ?>" class="btn btn-primary">Novo</a>
+    <a href="<?= base_url("/contratos/novo") ?>" class="btn btn-primary">Novo</a>
     <div class="clear"></div>
     <hr>
     <!-- DataTables Example -->
@@ -31,8 +31,8 @@
                 <td>Murilo Henrique Wippel</td>
                 <td>01/01/2018</td>
                 <td>01/12/2018</td>
-                <td style="text-align: center;"><a href="<?= base_url("index.php/contratos/novo") ?>" class="btn btn-primary">Editar</a></td>
-                <td style="text-align: center;"><a href="<?= base_url("index.php/contratos/novo") ?>" class="btn btn-danger">Apagar</a></td>
+                <td style="text-align: center;"><a href="<?= base_url("/contratos/novo") ?>" class="btn btn-primary">Editar</a></td>
+                <td style="text-align: center;"><a href="<?= base_url("/contratos/novo") ?>" class="btn btn-danger">Apagar</a></td>
               </tr>
             </tbody>
           </table>

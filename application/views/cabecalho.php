@@ -26,7 +26,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
     <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
       <img style="width:32px;height: 32px;margin-right: 10px;" src="<?= base_url("img/") ?>mace.png" />
-      <a class="navbar-brand mr-1" href="<?= base_url("index.php") ?>">SGJ</a>
+      <a class="navbar-brand mr-1" href="<?= base_url("/") ?>">SGJ</a>
 
       <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
         <i class="fas fa-bars"></i>
@@ -83,7 +83,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       <!-- Sidebar -->
       <ul class="sidebar navbar-nav">
         <li class="nav-item">
-          <a class="nav-link" href="<?= base_url("index.php") ?>">
+          <a class="nav-link" href="<?= base_url("/") ?>">
             <i class="fas fa-fw fa-home"></i>
             <span>Página Inicial</span>
           </a>
@@ -94,36 +94,36 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <span>Clientes</span>
           </a>
           <div class="dropdown-menu" aria-labelledby="pagesDropdown">
-            <a class="dropdown-item" href="<?= base_url("index.php/clientes") ?>">Clientes</a>
-            <a class="dropdown-item" href="<?= base_url("index.php/contratos") ?>">Contratos</a>
+            <a class="dropdown-item" href="<?= base_url("/clientes") ?>">Clientes</a>
+            <a class="dropdown-item" href="<?= base_url("/contratos") ?>">Contratos</a>
           </div>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="<?= base_url("index.php/processos") ?>">
+          <a class="nav-link" href="<?= base_url("/processos") ?>">
             <i class="fas fa-fw fa-file-alt"></i>
             <span>Processos</span>
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="<?= base_url("index.php/agenda") ?>">
+          <a class="nav-link" href="<?= base_url("/agenda") ?>">
             <i class="fas fa-fw fa-calendar-alt"></i>
             <span>Agenda</span>
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="<?= base_url("index.php/agenda") ?>">
+          <a class="nav-link" href="<?= base_url("/agenda") ?>">
             <i class="fas fa-fw fa-dollar-sign"></i>
             <span>Financeiro</span>
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="<?= base_url("index.php/agenda") ?>">
+          <a class="nav-link" href="<?= base_url("/agenda") ?>">
             <i class="fas fa-fw fa-file-word"></i>
             <span>G.E.D</span>
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="<?= base_url("index.php/agenda") ?>">
+          <a class="nav-link" href="<?= base_url("/agenda") ?>">
             <i class="fas fa-fw fa-users-cog"></i>
             <span>Usuários</span>
           </a>

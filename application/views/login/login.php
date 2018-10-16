@@ -36,7 +36,7 @@
           <?php if (isset($mensagem)) { ?>
             <p class="alert alert-warning" role="alert"><?= $mensagem ?></p>
           <?php } ?>
-          <form action="<?= base_url("index.php/login/autenticar") ?>" method="post">
+          <form action="<?= base_url("/login/autenticar") ?>" method="post">
             <div class="form-group">
               <div class="form-label-group">
                 <input name="email" type="email" id="inputEmail" class="form-control" placeholder="Email address" required="required" autofocus="autofocus">
@@ -61,8 +61,8 @@
             <input class="btn btn-primary btn-block" type="submit" value="Entrar">
           </form>
           <div class="text-center">
-            <a class="d-block small mt-3" href="<?= base_url("index.php/login/cadastro") ?>">Criar nova conta</a>
-            <a class="d-block small" href="<?= base_url("index.php/login/recuperar") ?>">Esqueceu sua senha?</a>
+            <a class="d-block small mt-3" href="<?= base_url("/login/cadastro") ?>">Criar nova conta</a>
+            <a class="d-block small" href="<?= base_url("/login/recuperar") ?>">Esqueceu sua senha?</a>
           </div>
         </div>
       </div>

@@ -28,7 +28,7 @@
       <div class="card card-register mx-auto mt-5">
         <div class="card-header">Criar nova conta</div>
         <div class="card-body">
-          <form action="<?= base_url("index.php/login/inserirnovo") ?>" method="post">
+          <form action="<?= base_url("/login/inserirnovo") ?>" method="post">
             <div class="form-group">
               <div class="form-row">
                 <div class="col-md-12">
@@ -64,8 +64,8 @@
             <input class="btn btn-primary btn-block" type="submit" value="Inscrever-se">
           </form>
           <div class="text-center">
-            <a class="d-block small mt-3" href="<?= base_url("index.php/login") ?>">Acessar o sistema</a>
-            <a class="d-block small" href="<?= base_url("index.php/login/recuperar") ?>">Esqueceu sua senha?</a>
+            <a class="d-block small mt-3" href="<?= base_url("/login") ?>">Acessar o sistema</a>
+            <a class="d-block small" href="<?= base_url("/login/recuperar") ?>">Esqueceu sua senha?</a>
           </div>
         </div>
       </div>

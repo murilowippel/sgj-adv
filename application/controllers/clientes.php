@@ -84,12 +84,11 @@ class Clientes extends CI_Controller {
     $this->form_validation->set_rules("tppessoa","tipo de pessoa","required");
     $this->form_validation->set_rules("rua","rua","required");
     $this->form_validation->set_rules("numero","numero","required");
-    $this->form_validation->set_rules("complemento","complemento","required");
     $this->form_validation->set_rules("bairro","bairro","required");
     $this->form_validation->set_rules("cidade","cidade","required");
     $this->form_validation->set_rules("estado","estado","required");
     $this->form_validation->set_rules("celular","celular","required");
-    $this->form_validation->set_rules("datanascimento","data de nascimento","required");
+    $this->form_validation->set_rules("datanascimento","data de nasc.","required");
     $this->form_validation->set_rules("cep","cep","required");
     $this->form_validation->set_error_delimiters("<p class='alert alert-danger'>","</p>");
     
@@ -143,7 +142,7 @@ class Clientes extends CI_Controller {
             "email" => $this->input->post("email"),
             "cep" => $this->input->post("cep")
         );
-
+        
         $this->cliente_model->salva($cliente);
         $this->session->set_flashdata("success", "Cliente gravado com sucesso");
       }
@@ -151,9 +150,11 @@ class Clientes extends CI_Controller {
       redirect("/clientes");
     } else {
       $this->load->view('cabecalho.php', $dados);
-      $this->load->view("clientes/novo");
+      $this->load->view("clientes/formulario.php");
       $this->load->view('rodape.php');
     }
+    
+    
   }
 
 }
