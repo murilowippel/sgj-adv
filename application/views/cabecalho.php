@@ -94,36 +94,36 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <span>Clientes</span>
           </a>
           <div class="dropdown-menu" aria-labelledby="pagesDropdown">
-            <a class="dropdown-item" href="<?= base_url("/clientes") ?>">Clientes</a>
-            <a class="dropdown-item" href="<?= base_url("/contratos") ?>">Contratos</a>
+            <a class="dropdown-item" href="<?= base_url("clientes") ?>">Clientes</a>
+            <a class="dropdown-item" href="<?= base_url("contratos") ?>">Contratos</a>
           </div>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="<?= base_url("/processos") ?>">
+          <a class="nav-link" href="<?= base_url("processos") ?>">
             <i class="fas fa-fw fa-file-alt"></i>
             <span>Processos</span>
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="<?= base_url("/agenda") ?>">
+          <a class="nav-link" href="<?= base_url("agenda") ?>">
             <i class="fas fa-fw fa-calendar-alt"></i>
             <span>Agenda</span>
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="<?= base_url("/agenda") ?>">
+          <a class="nav-link" href="<?= base_url("agenda") ?>">
             <i class="fas fa-fw fa-dollar-sign"></i>
             <span>Financeiro</span>
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="<?= base_url("/agenda") ?>">
+          <a class="nav-link" href="<?= base_url("agenda") ?>">
             <i class="fas fa-fw fa-file-word"></i>
             <span>G.E.D</span>
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="<?= base_url("/agenda") ?>">
+          <a class="nav-link" href="<?= base_url("usuarios") ?>">
             <i class="fas fa-fw fa-users-cog"></i>
             <span>Usuários</span>
           </a>
