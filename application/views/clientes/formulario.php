@@ -27,7 +27,7 @@
           <div class="form-row col-md-12">
             <div class="form-group col-md-4">
               <label for="nome"><strong>Nome: <span class="obrigatorio">(obrigatório)</span></strong></label>
-              <input type="text" name="nome" class="form-control" id="nome" placeholder="" value="<?=set_value('nome')?>">
+              <input type="text" name="nome" class="form-control" id="nome" placeholder="" value="<?php if (isset($cliente)) { echo $cliente['nome']; } ?>">
               <?= form_error("nome") ?>
             </div>
             <div class="form-group col-md-4">
