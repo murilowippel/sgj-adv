@@ -1,5 +1,4 @@
 <?php
-
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 /**
@@ -18,11 +17,10 @@ class Usuarios extends CI_Controller {
     //Carrega a lista de Usuários
     $this->load->model("usuario_model");
     $usuarios = $this->usuario_model->buscaTodos();
-    $dados['usuarios'] = $usuarios;
-    
+    $usuarios['usuarios'] = $usuarios;
+
     //Carrega a view
-    $this->load->view('cabecalho.php', $dados);
-    $this->load->view('usuarios/usuarios.php');
-    $this->load->view('rodape.php');
+    $this->load->template('usuarios/usuarios.php', $dados, $usuarios);
   }
+
 }

@@ -1,21 +1,8 @@
 <script src="<?= base_url("js/jquery.min.js") ?>"></script>
-<style>
-  .borda {
-    border: 1px solid rgba(0,0,0,.1);
-    margin:20px;
-    padding:20px;
-    border-radius: 5px;
-  }
-  .obrigatorio {
-    font-size: 12px;
-    color: red;
-    font-weight: normal;
-  }
-</style>
 <div id="content-wrapper">
   <div class="container-fluid">
     <h1 style="margin-left: 2%;">Cadastro de Cliente</h1>
-    <hr>
+    <!--<hr>-->
     
     <div class="clear"></div>
     
@@ -152,7 +139,6 @@
           <div class="col-md-12" style="text-align: right;">
           <a href="<?= base_url("clientes") ?>" class="btn btn-danger">Voltar</a>
           <a href="<?= base_url("clientes/novo") ?>" class="btn btn-primary">Limpar</a>
-          <!--<button id="limpar" type="button" class="btn btn-primary">Limpar</button>;-->
           <button type="submit" class="btn btn-success" style="margin-right: 11px">Gravar</button>
         </div>
         

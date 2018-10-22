@@ -17,13 +17,10 @@ class Clientes extends CI_Controller {
 
     //Carrega a lista de clientes
     $this->load->model("cliente_model");
-    $clientes = $this->cliente_model->buscaTodos();
-    $dados['clientes'] = $clientes;
+    $clientes['clientes'] = $this->cliente_model->buscaTodos();
 
     //Carrega a view
-    $this->load->view('cabecalho.php', $dados);
-    $this->load->view('clientes/clientes.php');
-    $this->load->view('rodape.php');
+    $this->load->template('clientes/clientes.php', $dados, $clientes);
   }
 
   //Função para abrir o formulário de cadastro de clientes
@@ -35,9 +32,7 @@ class Clientes extends CI_Controller {
     $dados['titulopagina'] = "Cadastro de Cliente";
 
     //Carrega a view
-    $this->load->view('cabecalho.php', $dados);
-    $this->load->view('clientes/formulario.php');
-    $this->load->view('rodape.php');
+    $this->load->template('clientes/formulario.php', $dados);
   }
 
   //Função para abrir editar um cliente
@@ -53,9 +48,7 @@ class Clientes extends CI_Controller {
     $cliente['cliente'] = $this->cliente_model->buscaCliente($idcliente);
 
     //Carrega a view
-    $this->load->view('cabecalho.php', $dados);
-    $this->load->view('clientes/formulario.php', $cliente);
-    $this->load->view('rodape.php');
+    $this->load->template('clientes/formulario.php', $dados, $cliente);
   }
 
   //Função para excluir um cliente
@@ -69,7 +62,7 @@ class Clientes extends CI_Controller {
     $this->cliente_model->deleta($idcliente);
 
     //Mensagem de sucesso e redirecionar
-    $this->session->set_flashdata("success", "Cliente apagado com sucesso");
+    $this->session->set_flashdata("success", "Cliente excluído com sucesso!");
     redirect("/clientes");
   }
 
@@ -118,7 +111,7 @@ class Clientes extends CI_Controller {
         );
 
         $this->cliente_model->salvaEditado($cliente, $idcliente);
-        $this->session->set_flashdata("success", "Dados atualizados com sucesso");
+        $this->session->set_flashdata("success", "Dados atualizados com sucesso!");
       } else {
         //Busca o próximo valor da sequence de idcliente
         $query = $this->db->query("SELECT nextval('shcliente.sqidcliente')");
@@ -144,14 +137,12 @@ class Clientes extends CI_Controller {
         );
         
         $this->cliente_model->salva($cliente);
-        $this->session->set_flashdata("success", "Cliente gravado com sucesso");
+        $this->session->set_flashdata("success", "Cliente gravado com sucesso!");
       }
 
       redirect("/clientes");
     } else {
-      $this->load->view('cabecalho.php', $dados);
-      $this->load->view("clientes/formulario.php");
-      $this->load->view('rodape.php');
+      $this->load->template("clientes/formulario.php", $dados);
     }
     
     

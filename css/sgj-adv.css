@@ -1,5 +1,17 @@
 .clear
 {
-    display: block;
-    clear: both;
+  display: block;
+  clear: both;
+}
+
+.borda {
+  border: 1px solid rgba(0,0,0,.1);
+  margin:20px;
+  padding:20px;
+  border-radius: 5px;
+}
+.obrigatorio {
+  font-size: 12px;
+  color: red;
+  font-weight: normal;
 }

@@ -19,6 +19,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
     <link href="<?= base_url("css/dataTables.bootstrap4.css") ?>" rel="stylesheet">
     <link href="<?= base_url("css/sb-admin.css") ?>" rel="stylesheet">
+    <link href="<?= base_url("css/sgj-adv.css") ?>" rel="stylesheet">
     
   </head>
 
@@ -88,13 +89,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <span>Página Inicial</span>
           </a>
         </li>
-        <li class="nav-item dropdown"><!--active-->
-          <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <li class="nav-item">
+          <a class="nav-link" href="<?= base_url("clientes") ?>">
             <i class="fas fa-fw fa-users"></i>
             <span>Clientes</span>
           </a>
+        </li>
+        <li class="nav-item dropdown"><!--active-->
+          <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-fw fa-file-alt"></i>
+            <span>Contratos</span>
+          </a>
           <div class="dropdown-menu" aria-labelledby="pagesDropdown">
-            <a class="dropdown-item" href="<?= base_url("clientes") ?>">Clientes</a>
+            <a class="dropdown-item" href="<?= base_url("tiposcontratos") ?>">Tipos de Contrato</a>
             <a class="dropdown-item" href="<?= base_url("contratos") ?>">Contratos</a>
           </div>
         </li>

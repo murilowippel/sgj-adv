@@ -1,10 +1,10 @@
 <div id="content-wrapper">
   <div class="container-fluid">
-    <h1>Clientes</h1>
+    <h1>Tipos de Contrato</h1>
     <hr>
     <!--Conteúdo da Página-->
     <div style="width: 100%; text-align: right;">
-      <a href="<?= base_url("clientes/novo") ?>" style="margin-right: 20px; margin-bottom: 20px;" class="btn btn-primary">Novo</a>
+      <a href="<?= base_url("tiposcontratos/novo") ?>" style="margin-right: 20px; margin-bottom: 20px;" class="btn btn-primary">Novo</a>
     </div>
     <div class="clear"></div>
     <?php if ($this->session->flashdata("success")) : ?>
@@ -21,25 +21,19 @@
           <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
             <thead>
               <tr>
+                <th style="text-align: center;">Código</th>
                 <th>Nome</th>
-                <th>CPF/CNPJ</th>
-                <th>Endereço</th>
-                <th>Profissão</th>
-                <th>Telefones</th>
                 <th></th>
                 <th></th>
               </tr>
             </thead>
-            <?php foreach ($clientes as $cliente) : ?>
+            <?php foreach ($tiposcontratos as $tipocontrato) : ?>
               <tbody>
                 <tr>
-                  <td><?= $cliente['nome'] ?></td>
-                  <td><?= $cliente['cpfcnpj'] ?></td>
-                  <td><?= $cliente['rua'] . " " . $cliente['numero'] . " " . $cliente['bairro'] . " - " . $cliente['cidade'] . " (" . $cliente['estado'] . ")" ?></td>
-                  <td><?= $cliente['profissao'] ?></td>
-                  <td><?= $cliente['telefone'] . " " . $cliente['celular'] ?></td>
-                  <td style="text-align: center;"><a href="<?= base_url("/clientes/") ?><?= $cliente['idcliente'] ?>" class="btn btn-primary">Editar</a></td>
-                  <td style="text-align: center;">
+                  <td style="text-align: center; width: 122px;"><?= $tipocontrato['idtipocontrato'] ?></td>
+                  <td><?= $tipocontrato['nome'] ?></td>
+                  <td style="text-align: center; width: 122px;"><a href="<?= base_url("/tiposcontratos/") ?><?= $tipocontrato['idtipocontrato'] ?>" class="btn btn-primary">Editar</a></td>
+                  <td style="text-align: center; width: 122px;">
                     <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deletaModal">
                       Excluir
                     </button>
@@ -57,17 +51,17 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Excluir Cliente</h5>
+          <h5 class="modal-title" id="exampleModalLabel">Excluir Tipo de Contrato</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
-          Deseja excluir o cliente selecionado?
+          Deseja excluir o tipo de contrato selecionado?
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-          <a href="<?= base_url("/clientes/deletar?idcliente=") ?><?= $cliente['idcliente'] ?>" class="btn btn-danger">Sim</a>
+          <a href="<?= base_url("/tiposcontratos/deletar?idtipocontrato=") ?><?= $tipocontrato['idtipocontrato'] ?>" class="btn btn-danger">Sim</a>
         </div>
       </div>
     </div>

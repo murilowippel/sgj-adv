@@ -12,9 +12,7 @@ class Dashboard extends CI_Controller {
   public function index() {
     autoriza();
     $dados['titulopagina'] = "Página Inicial";
-    $this->load->view('cabecalho.php', $dados);
-    $this->load->view('dashboard/dashboard.php');
-    $this->load->view('rodape.php');
+    $this->load->template('dashboard/dashboard.php', $dados);
   }
 
 }

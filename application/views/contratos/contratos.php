@@ -1,46 +1,72 @@
-<!--CONTAINER DE CONTEÚDOS-->
 <div id="content-wrapper">
   <div class="container-fluid">
-    <!-- Page Content -->
     <h1>Contratos</h1>
     <hr>
-    <a href="<?= base_url("/contratos/novo") ?>" class="btn btn-primary">Novo</a>
+    <!--Conteúdo da Página-->
+    <div style="width: 100%; text-align: right;">
+      <a href="<?= base_url("/contratos/novo") ?>" style="margin-right: 20px; margin-bottom: 20px;" class="btn btn-primary">Novo</a>
+    </div>
     <div class="clear"></div>
-    <hr>
-    <!-- DataTables Example -->
-    <div class="card mb-3">
+    <?php if ($this->session->flashdata("success")) : ?>
+      <p class="alert alert-success"><?= $this->session->flashdata("success") ?></p>
+    <?php endif ?>
 
+    <?php if ($this->session->flashdata("danger")) : ?>
+      <p class="alert alert-danger"><?= $this->session->flashdata("danger") ?></p>
+    <?php endif ?>
+    <!--Tabela-->
+    <div class="card mb-3">
       <div class="card-body">
         <div class="table-responsive">
           <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
             <thead>
               <tr>
-                <th>Nº do Contrato</th>
                 <th>Título</th>
                 <th>Cliente</th>
-                <th>Início de Vigência</th>
-                <th>Fim de Vigência</th>
+                <th>Tipo de Contrato</th>
+                <th>Data de Início da Vigência</th>
+                <th>Data de Fim da Vigência</th>
+                <th></th>
                 <th></th>
                 <th></th>
               </tr>
             </thead>
-            <tbody>
-              <tr>
-                <td style="text-align: center;">1</td>
-                <td>Contrato de Prestação de Serviços</td>
-                <td>Murilo Henrique Wippel</td>
-                <td>01/01/2018</td>
-                <td>01/12/2018</td>
-                <td style="text-align: center;"><a href="<?= base_url("/contratos/novo") ?>" class="btn btn-primary">Editar</a></td>
-                <td style="text-align: center;"><a href="<?= base_url("/contratos/novo") ?>" class="btn btn-danger">Apagar</a></td>
-              </tr>
-            </tbody>
+            <?php foreach ($contratos as $contratos) : ?>
+              <tbody>
+                <tr>
+                  <td></td>
+                  <td style="text-align: center;"><a href="<?= base_url("/contratos/") ?><?= $contratos['idcontrato'] ?>" class="btn btn-primary">Editar</a></td>
+                  <td style="text-align: center;"><a href="#" class="btn btn-primary">Baixar</a></td>
+                  <td style="text-align: center;">
+                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deletaModal">
+                      Excluir
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            <?php endforeach ?>
           </table>
         </div>
       </div>
-      <div class="card-footer small text-muted">Atualizado em 11:59</div>
     </div>
-
-
   </div>
-  <!--CONTAINER DE CONTEÚDOS-->
+
+  <div class="modal fade" id="deletaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Apagar Contrato</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Deseja apagar o contrato selecionado?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+          <a href="<?= base_url("/contratos/deletar?idcontrato=") ?><?= $contratos['idcontrato'] ?>" class="btn btn-danger">Sim</a>
+        </div>
+      </div>
+    </div>
+  </div>
