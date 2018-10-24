@@ -4,7 +4,9 @@
     <!-- Page Content -->
     <h1>Processos</h1>
     <hr>
-    <a href="<?= base_url("/processos/novo") ?>" class="btn btn-primary">Novo</a>
+    <div style="width: 100%; text-align: right;">
+      <a href="<?= base_url("/processos/novo") ?>" class="btn btn-primary">Novo</a>
+    </div>
     <div class="clear"></div>
     <hr>
     <!-- DataTables Example -->
@@ -15,22 +17,22 @@
           <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
             <thead>
               <tr>
-                <th>Nº do Contrato</th>
-                <th>Título</th>
+                <th>Titulo</th>
+                <th>Nº do Processo</th>
                 <th>Cliente</th>
-                <th>Início de Vigência</th>
-                <th>Fim de Vigência</th>
+                <th>Data de Abertura</th>
+                <th>Descrição</th>
                 <th></th>
                 <th></th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td style="text-align: center;">1</td>
-                <td>Contrato de Prestação de Serviços</td>
-                <td>Murilo Henrique Wippel</td>
-                <td>01/01/2018</td>
+                <td>Partilha de Herança</td>
+                <td>12345679</td>
+                <td>Jullian Hermann Creutzberg</td>
                 <td>01/12/2018</td>
+                <td>Processo para realização da partilha dos bens do sr. José da Silva...</td>
                 <td style="text-align: center;"><a href="<?= base_url("/processos/novo") ?>" class="btn btn-primary">Editar</a></td>
                 <td style="text-align: center;"><a href="<?= base_url("/processos/novo") ?>" class="btn btn-danger">Apagar</a></td>
               </tr>
