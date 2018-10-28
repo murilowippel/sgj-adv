@@ -61,8 +61,7 @@
             <input class="btn btn-primary btn-block" type="submit" value="Entrar">
           </form>
           <div class="text-center">
-            <a class="d-block small mt-3" href="<?= base_url("/login/cadastro") ?>">Criar nova conta</a>
-            <a class="d-block small" href="<?= base_url("/login/recuperar") ?>">Esqueceu sua senha?</a>
+            <a class="d-block small mt-3" href="<?= base_url("/login/recuperar") ?>">Esqueceu sua senha?</a>
           </div>
         </div>
       </div>

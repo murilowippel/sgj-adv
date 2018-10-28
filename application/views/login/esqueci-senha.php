@@ -22,7 +22,7 @@
 
   </head>
 
-  <body class="bg-dark">
+  <body style="background-image: url('<?= base_url("img/") ?>login-wallpaper.jpg');" class="bg-dark">
 
     <div class="container">
       <div class="card card-login mx-auto mt-5">
@@ -42,8 +42,7 @@
             <a class="btn btn-primary btn-block" href="login.html">Recuperar Senha</a>
           </form>
           <div class="text-center">
-            <a class="d-block small mt-3" href="<?= base_url("/login/cadastro") ?>">Criar nova conta</a>
-            <a class="d-block small" href="<?= base_url("/login") ?>">Acessar o sistema</a>
+            <a class="d-block small mt-3" href="<?= base_url("/login") ?>">Acessar o sistema</a>
           </div>
         </div>
       </div>
