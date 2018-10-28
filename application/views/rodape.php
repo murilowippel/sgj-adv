@@ -44,6 +44,7 @@
 <script src="<?= base_url("js/datatables-demo.js") ?>"></script>
 <script src="<?= base_url("js/chart-area-demo.js") ?>"></script>
 
+
 </body>
 
 </html>

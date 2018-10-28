@@ -18,7 +18,7 @@
     <div class="card mb-3">
       <div class="card-body">
         <div class="table-responsive">
-          <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+          <table class="table table-striped" id="dataTable" width="100%" cellspacing="0">
             <thead>
               <tr>
                 <th>Título</th>
@@ -31,8 +31,8 @@
                 <th></th>
               </tr>
             </thead>
-            <?php foreach ($contratos as $contratos) : ?>
-              <tbody>
+            <tbody>
+              <?php foreach ($contratos as $contratos) : ?>
                 <tr>
                   <td></td>
                   <td style="text-align: center;"><a href="<?= base_url("/contratos/") ?><?= $contratos['idcontrato'] ?>" class="btn btn-primary">Editar</a></td>
@@ -43,8 +43,8 @@
                     </button>
                   </td>
                 </tr>
-              </tbody>
-            <?php endforeach ?>
+              <?php endforeach ?>
+            </tbody>
           </table>
         </div>
       </div>

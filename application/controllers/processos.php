@@ -19,7 +19,21 @@ class Processos extends CI_Controller {
   public function novo() {
     autoriza();
     $dados['titulopagina'] = "Cadastro de Processo";
-    $this->load->template('processos/novo.php', $dados);
+    $this->load->template('processos/formulario.php', $dados);
+  }
+
+  //Função para abrir a página de atualizações do processo
+  public function atualizacoes() {
+    autoriza();
+    $dados['titulopagina'] = "Atualizações de Processo";
+    $this->load->template('processos/atualizacoes.php', $dados);
+  }
+
+  //Função para abrir a página de atualizações do processo
+  public function novaatualizacao() {
+    autoriza();
+    $dados['titulopagina'] = "Cadastro de Atualização de Processo";
+    $this->load->template('processos/formularioatualizacao.php', $dados);
   }
 
 }

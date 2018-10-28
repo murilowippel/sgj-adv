@@ -22,5 +22,29 @@ class Usuarios extends CI_Controller {
     //Carrega a view
     $this->load->template('usuarios/usuarios.php', $dados, $usuarios);
   }
+  
+  //Função para abrir o formulário de cadastro de clientes
+  public function novo() {
+    //Valida a sessão
+    autoriza();
+
+    //Atribui o título da página
+    $dados['titulopagina'] = "Cadastro de Usuário";
+
+    //Carrega a view
+    $this->load->template('usuarios/formulario.php', $dados);
+  }
+  
+  //Função para abrir o formulário de cadastro de clientes
+  public function logacessos() {
+    //Valida a sessão
+    autoriza();
+
+    //Atribui o título da página
+    $dados['titulopagina'] = "Registro de Acessos";
+
+    //Carrega a view
+    $this->load->template('usuarios/logacessos.php', $dados);
+  }
 
 }

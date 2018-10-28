@@ -69,8 +69,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <i class="fas fa-user-circle fa-fw"></i>
           </a>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-            <a class="dropdown-item" href="#">Configurações</a>
-            <a class="dropdown-item" href="#">Log de Acessos</a>
+            <a class="dropdown-item" href="<?= base_url("usuarios") ?>">Configurações</a>
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" href="" data-toggle="modal" data-target="#logoutModal">Sair</a>
           </div>
@@ -118,13 +117,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="<?= base_url("agenda") ?>">
+          <a class="nav-link" href="<?= base_url("financeiro") ?>">
             <i class="fas fa-fw fa-dollar-sign"></i>
             <span>Financeiro</span>
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="<?= base_url("agenda") ?>">
+          <a class="nav-link" href="<?= base_url("ged") ?>">
             <i class="fas fa-fw fa-file-word"></i>
             <span>G.E.D</span>
           </a>

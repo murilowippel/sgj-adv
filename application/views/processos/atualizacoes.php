@@ -1,10 +1,11 @@
+<!--CONTAINER DE CONTEÚDOS-->
 <div id="content-wrapper">
   <div class="container-fluid">
     <!-- Page Content -->
-    <h1>Processos</h1>
+    <h1>Atualizações - Partilha de Herança</h1>
     <hr>
     <div style="width: 100%; text-align: right;">
-      <a href="<?= base_url("/processos/novo") ?>" class="btn btn-primary">Novo</a>
+      <a href="<?= base_url("/processos/novaatualizacao") ?>" class="btn btn-primary">Novo</a>
     </div>
     <div class="clear"></div>
     <hr>
@@ -17,11 +18,8 @@
             <thead>
               <tr>
                 <th>Titulo</th>
-                <th>Nº do Processo</th>
-                <th>Cliente</th>
-                <th>Data de Abertura</th>
                 <th>Descrição</th>
-                <th></th>
+                <th>Data de atualização</th>
                 <th></th>
                 <th></th>
               </tr>
@@ -29,11 +27,8 @@
             <tbody>
               <tr>
                 <td>Partilha de Herança</td>
-                <td>12345679</td>
-                <td>Jullian Hermann Creutzberg</td>
-                <td>01/12/2018</td>
                 <td>Processo para realização da partilha dos bens do sr. José da Silva...</td>
-                <td style="text-align: center;"><a href="<?= base_url("/processos/atualizacoes/1") ?>" class="btn btn-light">Atualizações</a></td>
+                <td>01/12/2018</td>
                 <td style="text-align: center;"><a href="<?= base_url("/processos/novo") ?>" class="btn btn-primary">Editar</a></td>
                 <td style="text-align: center;"><a href="<?= base_url("/processos/novo") ?>" class="btn btn-danger">Apagar</a></td>
               </tr>
@@ -45,3 +40,4 @@
 
 
   </div>
+  <!--CONTAINER DE CONTEÚDOS-->
