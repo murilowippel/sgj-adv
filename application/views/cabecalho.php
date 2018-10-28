@@ -20,6 +20,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <link href="<?= base_url("css/dataTables.bootstrap4.css") ?>" rel="stylesheet">
     <link href="<?= base_url("css/sb-admin.css") ?>" rel="stylesheet">
     <link href="<?= base_url("css/sgj-adv.css") ?>" rel="stylesheet">
+    <link rel="stylesheet" href="https://www.jquery-az.com/boots/css/bootstrap-multiselect/bootstrap-multiselect.css" type="text/css">
     
   </head>
 
@@ -50,7 +51,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <li class="nav-item dropdown no-arrow mx-1">
           <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <i class="fas fa-bell fa-fw"></i>
-            <span class="badge badge-danger">9+</span>
+            <span class="badge badge-danger">4+</span>
           </a>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="alertsDropdown">
             <a class="dropdown-item" href="#">Action</a>
@@ -116,11 +117,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <span>Agenda</span>
           </a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="<?= base_url("financeiro") ?>">
+        <li class="nav-item dropdown"><!--active-->
+          <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <i class="fas fa-fw fa-dollar-sign"></i>
             <span>Financeiro</span>
           </a>
+          <div class="dropdown-menu" aria-labelledby="pagesDropdown">
+            <a class="dropdown-item" href="<?= base_url("tiposcontratos") ?>">Centros de Custo</a>
+            <a class="dropdown-item" href="<?= base_url("tiposcontratos") ?>">Entradas</a>
+            <a class="dropdown-item" href="<?= base_url("contratos") ?>">Saídas</a>
+          </div>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="<?= base_url("ged") ?>">

@@ -68,10 +68,10 @@
           </div>
           
           <div class="col-md-12" style="text-align: right;">
-          <a href="<?= base_url("processos") ?>" class="btn btn-danger">Voltar</a>
-          <a href="<?= base_url("processos/novo") ?>" class="btn btn-primary">Limpar</a>
-          <button type="submit" class="btn btn-success" style="margin-right: 11px">Gravar</button>
-        </div>
+            <a href="<?= base_url("processos") ?>" class="btn btn-danger">Voltar</a>
+            <a href="<?= base_url("processos/novo") ?>" class="btn btn-primary">Limpar</a>
+            <button type="submit" class="btn btn-success" style="margin-right: 11px">Gravar</button>
+          </div>
         
         </div>
         

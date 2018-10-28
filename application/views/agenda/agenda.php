@@ -7,7 +7,7 @@
     <hr>
     <!--Conteúdo da Página-->
     <div style="width: 100%; text-align: right;">
-      <a href="<?= base_url("clientes/novo") ?>" style="margin-right: 20px; margin-bottom: 20px;" class="btn btn-primary">Novo</a>
+      <a href="<?= base_url("agenda/novo") ?>" style="margin-right: 20px; margin-bottom: 20px;" class="btn btn-primary">Novo</a>
     </div>
     <!--Tabela-->
     <div class="card mb-3">

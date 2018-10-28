@@ -37,12 +37,13 @@
 <script src="<?= base_url("js/jquery.mask.js") ?>"></script>
 <script src="<?= base_url("js/bootstrap.bundle.min.js") ?>"></script>
 <script src="<?= base_url("js/jquery.easing.min.js") ?>"></script>
-<script src="<?= base_url("js/Chart.min.js") ?>"></script>
+<!--<script src="<?= base_url("js/Chart.min.js") ?>"></script>-->
 <script src="<?= base_url("js/jquery.dataTables.js") ?>"></script>
 <script src="<?= base_url("js/dataTables.bootstrap4.js") ?>"></script>
 <script src="<?= base_url("js/sb-admin.min.js") ?>"></script>
 <script src="<?= base_url("js/datatables-demo.js") ?>"></script>
-<script src="<?= base_url("js/chart-area-demo.js") ?>"></script>
+<!--<script src="<?= base_url("js/chart-area-demo.js") ?>"></script>-->
+<script src="https://www.jquery-az.com/boots/js/bootstrap-multiselect/bootstrap-multiselect.js"></script>
 
 
 </body>
