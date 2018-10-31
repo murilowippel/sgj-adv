@@ -7,7 +7,7 @@ function autoriza() {
   $usuarioLogado = $ci->session->userdata("usuario_logado");
   if (!$usuarioLogado) {
     $ci->session->set_flashdata("danger", "Você precisa estar logado");
-    redirect("/login");
+    redirect("login");
   }
   return $usuarioLogado;
 }

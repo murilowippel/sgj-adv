@@ -35,7 +35,7 @@
                 <tr>
                   <td><?= $cliente['nome'] ?></td>
                   <td><?= $cliente['cpfcnpj'] ?></td>
-                  <td><?= $cliente['rua'] . " " . $cliente['numero'] . " " . $cliente['bairro'] . " - " . $cliente['cidade'] . " (" . $cliente['estado'] . ")" ?></td>
+                  <td><?= $cliente['rua']." ".$cliente['numero']." ".$cliente['bairro']." - ".$cliente['cidade']." (".$cliente['estado'].")" ?></td>
                   <td><?= $cliente['profissao'] ?></td>
                   <td><?= $cliente['telefone'] . " " . $cliente['celular'] ?></td>
                   <td style="text-align: center;"><a href="<?= base_url("/clientes/") ?><?= $cliente['idcliente'] ?>" class="btn btn-primary">Editar</a></td>
