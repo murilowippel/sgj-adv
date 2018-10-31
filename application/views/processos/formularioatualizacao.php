@@ -18,7 +18,7 @@
               <?= form_error("titulo") ?>
             </div>
             <div class="form-group col-md-6">
-              <label for="dataabertura"><strong>Data da Atualização:</strong></label>
+              <label for="dataabertura"><strong>Data da Atualização: <span class="obrigatorio">(obrigatório)</span></strong></label>
               <input type="text" name="dataabertura" class="form-control" id="dataabertura" placeholder="" value="<?php if (isset($processo)) { echo dataPostgresParaPtBr($processo['datainiciovigencia']); } ?>">
               <?= form_error("datainiciovigencia") ?>
             </div>

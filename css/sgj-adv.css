@@ -177,3 +177,13 @@ input.cmn-toggle-round-flat:checked + label:after
 .multiselect-container{
   width: 474px;
 }
+
+/*ALTERAÇÕES SGJ ADV*/
+.logo-login {
+  /*color: #3e449a;*/
+  color: white; 
+  text-shadow: black 0.1em 0.1em 0.18em;
+  text-align: center;
+  padding-top: 70px;
+  font-size: 2em;
+}

@@ -375,12 +375,3 @@ body.sidebar-toggled footer.sticky-footer {
 }
 
 
-/*ALTERAÇÕES SGJ ADV*/
-.logo-login {
-  /*color: #3e449a;*/
-  color: white; 
-  text-shadow: black 0.1em 0.1em 0.18em;
-  text-align: center;
-  padding-top: 100px;
-  font-size: 2em;
-}

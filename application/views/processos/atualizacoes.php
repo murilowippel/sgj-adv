@@ -27,7 +27,7 @@
             <tbody>
               <tr>
                 <td>Partilha de Herança</td>
-                <td>Processo para realização da partilha dos bens do sr. José da Silva...</td>
+                <td>Processo para realização da partilha dos bens do sr. Murilo Henrique Wippel...</td>
                 <td>01/12/2018</td>
                 <td style="text-align: center;"><a href="<?= base_url("/processos/novo") ?>" class="btn btn-primary">Editar</a></td>
                 <td style="text-align: center;"><a href="<?= base_url("/processos/novo") ?>" class="btn btn-danger">Apagar</a></td>

@@ -39,11 +39,7 @@
               <textarea class="form-control rounded-1" id="descricao" name="descricao" rows="3" style="resize: none;"></textarea>
               <?= form_error("titulo") ?>
             </div>
-            <div class="form-group col-md-4">
-              <label for="dataabertura"><strong>Data de Abertura:</strong></label>
-              <input type="text" name="dataabertura" class="form-control" id="dataabertura" placeholder="" value="<?php if (isset($processo)) { echo dataPostgresParaPtBr($processo['datainiciovigencia']); } ?>">
-              <?= form_error("datainiciovigencia") ?>
-            </div>
+            
             <div class="form-group col-md-4">
               <label for="idcontrato"><strong>Contrato:</strong></label>
               <select id="idcliente" name="idcliente" class="form-control">
@@ -61,9 +57,9 @@
               <?= form_error("titulo") ?>
             </div>
             <div class="form-group col-md-4">
-              <label for="titulo"><strong>Valor Inicial:</strong></label>
-              <input type="text" name="titulo" class="form-control" id="titulo" placeholder="" value="<?php if (isset($contrato)) { echo $contrato['titulo']; } ?>">
-              <?= form_error("titulo") ?>
+              <label for="dataabertura"><strong>Data de Abertura:</strong></label>
+              <input type="text" name="dataabertura" class="form-control" id="dataabertura" placeholder="" value="<?php if (isset($processo)) { echo dataPostgresParaPtBr($processo['datainiciovigencia']); } ?>">
+              <?= form_error("datainiciovigencia") ?>
             </div>
           </div>
           

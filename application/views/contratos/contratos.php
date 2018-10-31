@@ -32,18 +32,20 @@
               </tr>
             </thead>
             <tbody>
-              <?php foreach ($contratos as $contratos) : ?>
                 <tr>
+                  <td>Contrato de Prestação de Serviços</td>
+                  <td>Murilo Henrique Wippel</td>
+                  <td>Prestação de Serviços</td>
+                  <td>01/06/2018</td>
                   <td></td>
-                  <td style="text-align: center;"><a href="<?= base_url("/contratos/") ?><?= $contratos['idcontrato'] ?>" class="btn btn-primary">Editar</a></td>
-                  <td style="text-align: center;"><a href="#" class="btn btn-primary">Baixar</a></td>
+                  <td style="text-align: center;"><a href="" class="btn btn-primary">Editar</a></td>
                   <td style="text-align: center;">
                     <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deletaModal">
                       Excluir
                     </button>
                   </td>
+                  <td style="text-align: center;"><a href="#" class="btn btn-success">Baixar</a></td>
                 </tr>
-              <?php endforeach ?>
             </tbody>
           </table>
         </div>

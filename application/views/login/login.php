@@ -20,7 +20,7 @@
 
     <!-- Custom styles for this template-->
     <link href="<?= base_url("css/sb-admin.css") ?>" rel="stylesheet">
-
+    <link href="<?= base_url("css/sgj-adv.css") ?>" rel="stylesheet">
   </head>
 
   <body style="background-image: url('<?= base_url("img/") ?>login-wallpaper.jpg');">
