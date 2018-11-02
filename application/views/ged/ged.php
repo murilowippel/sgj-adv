@@ -1,6 +1,6 @@
 <div id="content-wrapper">
   <div class="container-fluid">
-    <h1>Gerenciamento de Documentos Eletrônicos</h1>
+    <h1>Gerenciamento Eletrônico de Documentos</h1>
     <hr>
     <!--Conteúdo da Página-->
     <div style="width: 100%; text-align: right;">

@@ -20,15 +20,6 @@
               </select>
               <?=form_error("estado")?>
             </div>
-            <div class="form-group col-md-4">
-              <label for="estado"><strong>Cliente: </strong></label>
-              <select id="estado" name="estado" class="form-control">
-                <option selected></option>
-                <option value="AC">Ações de Conciliação</option>
-                <option value="AC">Manutenção do Escritório</option>
-              </select>
-              <?=form_error("estado")?>
-            </div>
           </div>
 
           <div class="form-row col-md-12">
