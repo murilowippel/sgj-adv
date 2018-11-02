@@ -48,7 +48,7 @@
           </div>
           
           <div class="form-row col-md-12">
-            <div class="form-group col-md-12">
+            <div class="form-group col-md-6">
               <label for="horario"><strong>Usuários relacionados: <span class="obrigatorio">(obrigatório)</span></strong></label><br/>
               <select id="option-droup-demo" multiple="multiple" style="width: 474px !important;">
                 <option value="jQuery">Murilo Wippel</option>
