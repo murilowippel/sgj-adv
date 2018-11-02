@@ -123,9 +123,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <span>Financeiro</span>
           </a>
           <div class="dropdown-menu" aria-labelledby="pagesDropdown">
-            <a class="dropdown-item" href="<?= base_url("tiposcontratos") ?>">Centros de Custo</a>
-            <a class="dropdown-item" href="<?= base_url("tiposcontratos") ?>">Entradas</a>
-            <a class="dropdown-item" href="<?= base_url("contratos") ?>">Saídas</a>
+            <a class="dropdown-item" href="<?= base_url("centrocusto") ?>">Centros de Custo</a>
+            <a class="dropdown-item" href="<?= base_url("entradas") ?>">Entradas</a>
+            <a class="dropdown-item" href="<?= base_url("saidas") ?>">Saídas</a>
           </div>
         </li>
         <li class="nav-item">
