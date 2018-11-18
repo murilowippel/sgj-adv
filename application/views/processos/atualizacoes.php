@@ -5,6 +5,7 @@
     <h1>Atualizações - Partilha de Herança</h1>
     <hr>
     <div style="width: 100%; text-align: right;">
+    <a href="<?= base_url("/processos/novaatualizacao") ?>" class="btn btn-success">Gerar Relatório</a>
       <a href="<?= base_url("/processos/novaatualizacao") ?>" class="btn btn-primary">Novo</a>
     </div>
     <div class="clear"></div>

@@ -4,6 +4,7 @@
     <hr>
     <!--Conteúdo da Página-->
     <div style="width: 100%; text-align: right;">
+      <a href="<?= base_url("/processos/novaatualizacao") ?>" style="margin-right: 20px; margin-bottom: 20px;" class="btn btn-success">Gerar Relatório</a>
       <a href="<?= base_url("entradas/novo") ?>" style="margin-right: 20px; margin-bottom: 20px;" class="btn btn-primary">Novo</a>
     </div>
     <div class="clear"></div>

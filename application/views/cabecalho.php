@@ -51,13 +51,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <li class="nav-item dropdown no-arrow mx-1">
           <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <i class="fas fa-bell fa-fw"></i>
-            <span class="badge badge-danger">4+</span>
+            <span class="badge badge-danger">1+</span>
           </a>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="alertsDropdown">
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Another action</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Something else here</a>
+            <a class="dropdown-item" href="#">Você tem um novo compromisso</a>
+            <span class="pull-right text-muted small"><em>Recebido em 10/10/2010 - 10:10</em>
+            </span>
           </div>
         </li>
         <li class="nav-item dropdown no-arrow mx-1">
