@@ -17,5 +17,12 @@ class Usuario_model extends CI_Model {
 
     return $usuario;
   }
+  
+  public function buscaUsuario($idusuario) {
+    $this->db->where("idusuario", $idusuario);
+    $usuario = $this->db->get("shadmin.usuario")->row_array();
+
+    return $usuario;
+  }
 
 }

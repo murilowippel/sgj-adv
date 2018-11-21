@@ -7,32 +7,32 @@
     <div class="clear"></div>
     
     <div class="col-md-10">
-      <form id="formClientes" action="<?= base_url("clientes/gravar") ?>" method="post">
+      <form id="formUsuarios" action="<?= base_url("usuarios/gravar") ?>" method="post">
         <div class="borda">
-          <input type="hidden" name="idcliente" value="<?php if (isset($cliente)) { echo $cliente['idcliente']; } ?>" />
+          <input type="hidden" name="idusuario" value="<?php if (isset($usuario)) { echo $usuario['idusuario']; } ?>" />
 
           <div class="form-row col-md-12">
             <div class="form-group col-md-4">
               <label for="nome"><strong>Nome: <span class="obrigatorio">(obrigatório)</span></strong></label>
-              <input type="text" name="nome" class="form-control" id="nome" placeholder="" value="<?php if (isset($cliente)) { echo $cliente['nome']; } ?>">
+              <input type="text" name="nome" class="form-control" id="nome" placeholder="" value="<?php if (isset($usuario)) { echo $usuario['nome']; } ?>">
               <?= form_error("nome") ?>
             </div>
             <div class="form-group col-md-4">
-              <label for="nome"><strong>E-mail: <span class="obrigatorio">(obrigatório)</span></strong></label>
-              <input type="text" name="nome" class="form-control" id="nome" placeholder="" value="<?php if (isset($cliente)) { echo $cliente['nome']; } ?>">
-              <?= form_error("nome") ?>
+              <label for="email"><strong>E-mail</strong></label>
+              <input type="text" name="email" class="form-control" id="email" placeholder="" value="<?php if (isset($usuario)) { echo $usuario['email']; } ?>">
+              <?= form_error("email") ?>
             </div>
           </div>
           
           <div class="form-row col-md-12">
             <div class="form-group col-md-4">
-              <label for="nome"><strong>Senha: <span class="obrigatorio">(obrigatório)</span></strong></label>
-              <input type="password" name="nome" class="form-control" id="nome" placeholder="" value="<?php if (isset($cliente)) { echo $cliente['nome']; } ?>">
-              <?= form_error("nome") ?>
+              <label for="senha"><strong>Senha: <span class="obrigatorio">(obrigatório)</span></strong></label>
+              <input type="password" name="senha" class="form-control" id="nome" placeholder="" value="">
+              <?= form_error("senha") ?>
             </div>
             <div class="form-group col-md-4">
               <label for="cpfcnpj"><strong>CPF/CNPJ: <span class="obrigatorio">(obrigatório)</span></strong></label>
-              <input type="text" name="cpfcnpj" class="form-control" id="cpfcnpj" placeholder="" value="<?php if (isset($cliente)) { echo $cliente['cpfcnpj']; } ?>">
+              <input type="text" name="cpfcnpj" class="form-control" id="cpfcnpj" placeholder="" value="<?php if (isset($usuario)) { echo $usuario['cpfcnpj']; } ?>">
               <?= form_error("cpfcnpj") ?>
             </div>
           </div>
@@ -81,7 +81,7 @@
     $('#celular').mask('(00) 00000-0000');
 
     $("#limpar").click(function () {
-      $('#formClientes')[0].reset();
+      $('#formUsuarios')[0].reset();
     });
 
   });

@@ -4,7 +4,7 @@
     <hr>
     <!--Conteúdo da Página-->
     <div style="width: 100%; text-align: right;">
-      <a href="<?= base_url("usuarios/logacessos") ?>" style="margin-right: 20px; margin-bottom: 20px;" class="btn btn-warning">Registro de Acessos</a>
+      <a href="<?= base_url("logacessos") ?>" style="margin-right: 20px; margin-bottom: 20px;" class="btn btn-warning">Registro de Acessos</a>
       <a href="<?= base_url("usuarios/novo") ?>" style="margin-right: 20px; margin-bottom: 20px;" class="btn btn-primary">Novo Usuário</a>
     </div>
     <div class="clear"></div>
@@ -57,7 +57,7 @@
                     ?></td>
                   <td style="text-align: center;"><a href="<?= base_url("/usuarios/") ?><?= $usuario['idusuario'] ?>" class="btn btn-primary">Editar</a></td>
                 </tr>
-<?php endforeach ?>
+              <?php endforeach ?>
             </tbody>
           </table>
         </div>

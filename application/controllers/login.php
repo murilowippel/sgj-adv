@@ -21,6 +21,7 @@ class Login extends CI_Controller {
   //Função para abrir a página inicial após logar
   public function autenticar() {
     $this->load->model("usuario_model");
+    $this->load->model("logacessos_model");
     
     $email = $this->input->post("email");
     $senha = md5($this->input->post("senha"));
@@ -28,6 +29,20 @@ class Login extends CI_Controller {
     $usuario = $this->usuario_model->buscaPorEmailESenha($email,$senha);
     if($usuario){
       $this->session->set_userdata("usuario_logado", $usuario);
+      
+      //Gravando o log de acesso
+      $query = $this->db->query("SELECT nextval('shadmin.sqidlogacessos')");
+      $idlogacessos = $query->row_array();
+      //Carrega os valores dos campos do formulário
+      $logacesso = array(
+          "idlogacessos" => $idlogacessos['nextval'],
+          "idusuario" => $usuario['idusuario'],
+          "datahracesso" => date('Y-m-d H:i:s'),
+          "ipusuario" => $_SERVER['REMOTE_ADDR']
+      );
+
+      $this->logacessos_model->salva($logacesso);
+      
       redirect("/");
     } else {
       $dados = array("mensagem" => "E-mail ou senha incorretos");

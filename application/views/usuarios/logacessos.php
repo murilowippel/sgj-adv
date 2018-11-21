@@ -19,26 +19,17 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td style="text-align: center;">Murilo Wippel</td>
-                <td style="text-align: center;">20/09/2018 - 10:00</td>
-                <td style="text-align: center;">189.55.223.45</td>
-              </tr>
-              <tr>
-                <td style="text-align: center;">Murilo Wippel</td>
-                <td style="text-align: center;">22/09/2018 - 11:00</td>
-                <td style="text-align: center;">189.55.223.45</td>
-              </tr>
-              <tr>
-                <td style="text-align: center;">Murilo Wippel</td>
-                <td style="text-align: center;">01/10/2018 - 08:05</td>
-                <td style="text-align: center;">189.55.223.45</td>
-              </tr>
-              <tr>
-                <td style="text-align: center;">Murilo Wippel</td>
-                <td style="text-align: center;">02/09/2018 - 15:35</td>
-                <td style="text-align: center;">189.55.223.45</td>
-              </tr>
+              <?php foreach ($logacessos as $logacesso) : 
+                $data = dataPostgresParaPtBr(substr($logacesso['datahracesso'], 0, 10));
+                $data .= " - ".substr($logacesso['datahracesso'], 11);
+                $usuario = $this->usuario_model->buscaUsuario($logacesso['idusuario']);
+                ?>
+                <tr>
+                  <td style="text-align: center;"><?= $usuario['nome'] ?></td>
+                  <td style="text-align: center;"><?= $data ?></td>
+                  <td style="text-align: center;"><?= $logacesso['ipusuario'] ?></td>
+                </tr>
+              <?php endforeach ?>
             </tbody>
           </table>
         </div>

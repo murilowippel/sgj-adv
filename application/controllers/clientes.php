@@ -144,8 +144,6 @@ class Clientes extends CI_Controller {
     } else {
       $this->load->template("clientes/formulario.php", $dados);
     }
-    
-    
   }
 
 }

@@ -28,24 +28,27 @@
                 <th>Data de Fim da Vigência</th>
                 <th></th>
                 <th></th>
-                <th></th>
               </tr>
             </thead>
             <tbody>
-                <tr>
-                  <td>Contrato de Prestação de Serviços</td>
-                  <td>Murilo Henrique Wippel</td>
-                  <td>Prestação de Serviços</td>
-                  <td>01/06/2018</td>
-                  <td></td>
-                  <td style="text-align: center;"><a href="" class="btn btn-primary">Editar</a></td>
-                  <td style="text-align: center;">
-                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deletaModal">
-                      Excluir
-                    </button>
-                  </td>
-                  <td style="text-align: center;"><a href="#" class="btn btn-success">Baixar</a></td>
-                </tr>
+              <?php 
+                foreach ($contratos as $contrato) : 
+                  $cliente = $this->cliente_model->buscaCliente($contrato['idcliente']);
+                  $tipocontrato = $this->tipocontrato_model->buscaTipoContrato($contrato['idtipocontrato']); ?>
+                  <tr>
+                    <td><?= $contrato['titulo'] ?></td>
+                    <td><?=  $cliente['nome'] ?></td>
+                    <td><?= $tipocontrato['nome'] ?></td>
+                    <td><?= dataPostgresParaPtBr($contrato['datainiciovigencia']) ?></td>
+                    <td><?= dataPostgresParaPtBr($contrato['datafimvigencia']) ?></td>
+                    <td style="text-align: center;"><a href="<?= base_url("/contratos/") ?><?= $contrato['idcontrato'] ?>" class="btn btn-primary">Editar</a></td>
+                    <td style="text-align: center;">
+                      <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deletaModal">
+                        Excluir
+                      </button>
+                    </td>
+                  </tr>
+              <?php endforeach ?>
             </tbody>
           </table>
         </div>
@@ -67,7 +70,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-          <a href="<?= base_url("/contratos/deletar?idcontrato=") ?><?= $contratos['idcontrato'] ?>" class="btn btn-danger">Sim</a>
+          <a href="<?= base_url("/contratos/deletar?idcontrato=") ?><?= $contrato['idcontrato'] ?>" class="btn btn-danger">Sim</a>
         </div>
       </div>
     </div>

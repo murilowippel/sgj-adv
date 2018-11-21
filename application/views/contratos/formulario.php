@@ -22,7 +22,13 @@
               <label for="idcliente"><strong>Cliente: <span class="obrigatorio">(obrigatório)</span></strong></label>
               <select id="idcliente" name="idcliente" class="form-control">
                 <option selected></option>
-                <option value="1">Cliente 123</option>
+                <?php foreach ($clientes as $cliente) : ?>
+                  <?php if($contrato['idcliente'] == $cliente['idcliente']){ ?>
+                    <option value="<?= $cliente['idcliente'] ?>" selected><?= $cliente['nome'] ?></option>
+                  <?php } else { ?>
+                    <option value="<?= $cliente['idcliente'] ?>"><?= $cliente['nome'] ?></option>
+                  <?php } ?>
+                <?php endforeach; ?>
               </select>
               <?= form_error("idcliente") ?>
             </div>
@@ -30,7 +36,15 @@
               <label for="idtipocontrato"><strong>Tipo de Contrato: <span class="obrigatorio">(obrigatório)</span></strong></label>
               <select id="idtipocontrato" name="idtipocontrato" class="form-control">
                 <option selected></option>
-                <option value="1">Prestação de Serviços</option>
+                <?php foreach ($tipocontratos as $tipocontrato) : ?>
+                  <?php 
+                    if($tipocontrato['idtipocontrato'] == $contrato['idtipocontrato']){ ?>
+                      <option value="<?= $tipocontrato['idtipocontrato'] ?>" selected><?= $tipocontrato['nome'] ?></option>
+                  <?php } else { ?>
+                      <option value="<?= $tipocontrato['idtipocontrato'] ?>"><?= $tipocontrato['nome'] ?></option>
+                  <?php } ?>
+                  ?>
+                <?php endforeach; ?>
               </select>
               <?= form_error("idtipocontrato") ?>
             </div>
@@ -40,26 +54,25 @@
           <div class="form-row col-md-12">
             <div class="form-group col-md-4">
               <label for="descricao"><strong>Descrição: <span class="obrigatorio">(obrigatório)</span></strong></label>
-              <!--<input type="text" name="dscricao" class="form-control" id="dscricao" placeholder="" value="<?php if (isset($contrato)) { echo $contrato['dscricao']; } ?>">-->
-              <textarea class="form-control rounded-1" id="descricao" name="descricao" rows="3" style="resize: none;"></textarea>
-              <?= form_error("titulo") ?>
+              <textarea class="form-control rounded-1" id="descricao" name="descricao" rows="3" style="resize: none;"><?php if (isset($contrato)) { echo $contrato['descricao']; } ?></textarea>
+              <?= form_error("descricao") ?>
             </div>
-            <div class="form-group col-md-4">
+<!--            <div class="form-group col-md-4">
               <label for="nmarquivo"><strong>Arquivo (PDF ou WORD): <span class="obrigatorio">(obrigatório)</span></strong></label>
               <input type="file" class="form-control-file" id="exampleFormControlFile1">
-            </div>
+            </div>-->
           </div>
           
           <!--datainiciovigencia, datafimvigencia-->
           <div class="form-row col-md-12">
             <div class="form-group col-md-4">
               <label for="datainiciovigencia"><strong>Início da Vigência: <span class="obrigatorio">(obrigatório)</span></strong></label>
-              <input type="text" name="datainiciovigencia" class="form-control" id="datainiciovigencia" placeholder="" value="<?php if (isset($cliente)) { echo dataPostgresParaPtBr($cliente['datainiciovigencia']); } ?>">
+              <input type="text" name="datainiciovigencia" class="form-control" id="datainiciovigencia" placeholder="" value="<?php if (isset($contrato)) { echo dataPostgresParaPtBr($contrato['datainiciovigencia']); } ?>">
               <?= form_error("datainiciovigencia") ?>
             </div>
             <div class="form-group col-md-4">
               <label for="datafimvigencia"><strong>Fim da Vigência:</strong></label>
-              <input type="text" name="datafimvigencia" class="form-control" id="datafimvigencia" placeholder="" value="<?php if (isset($cliente)) { echo dataPostgresParaPtBr($cliente['datafimvigencia']); } ?>">
+              <input type="text" name="datafimvigencia" class="form-control" id="datafimvigencia" placeholder="" value="<?php if (isset($contrato)) { echo dataPostgresParaPtBr($contrato['datafimvigencia']); } ?>">
               <?= form_error("datafimvigencia") ?>
             </div>
           </div>
