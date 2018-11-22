@@ -53,6 +53,7 @@ $route['default_controller'] = 'dashboard';
 $route['clientes/(:num)'] = 'clientes/editar/$1';
 $route['tiposcontratos/(:num)'] = 'tiposcontratos/editar/$1';
 $route['contratos/(:num)'] = 'contratos/editar/$1';
+$route['usuarios/(:num)'] = 'usuarios/editar/$1';
 
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

@@ -35,6 +35,89 @@ class Usuarios extends CI_Controller {
     $this->load->template('usuarios/formulario.php', $dados);
   }
   
+  //Função para abrir editar um tipo de contrato
+  public function editar($idusuario) {
+    //Valida a sessão
+    autoriza();
+
+    //Atribui o título da página
+    $dados['titulopagina'] = "Cadastro de Usuários";
+
+    //Carregar registro pelo id
+    $this->load->model("usuario_model");
+    $usuario['usuario'] = $this->usuario_model->buscaUsuario($idusuario);
+
+    //Carrega a view
+    $this->load->template('usuarios/formulario.php', $dados, $usuario);
+  }
+  
+  public function gravar() {
+    //Valida a sessão
+    autoriza();
+    
+    //Atribui o título da página
+    $dados['titulopagina'] = "Cadastro de Usuários";
+    
+    $this->form_validation->set_rules("nome", "nome", "required");
+    $this->form_validation->set_rules("email", "e-mail", "required");
+    $this->form_validation->set_rules("senha", "senha", "required");
+    $this->form_validation->set_rules("cpf", "cpf", "required");
+    $this->form_validation->set_rules("nvlacesso", "tipo de usuário", "required");
+    $this->form_validation->set_error_delimiters("<p class='alert alert-danger'>", "</p>");
+
+    $sucesso = $this->form_validation->run();
+    if ($sucesso) {
+      //Carregando o model
+      $this->load->model("usuario_model");
+      
+      //Carrega o idusuario se houver
+      $idusuario = $this->input->post("idusuario");
+      
+      //Verifica se o acesso ao usuário está liberado SIM / NÃO
+      if($this->input->post("liberado") == "on"){
+        $liberado = '1';
+      } else {
+        $liberado = '0';
+      }
+
+      if ($idusuario) {
+        //Carrega os valores dos campos do formulário
+        $usuario = array(
+            "nome" => $this->input->post("nome"),
+            "email" => $this->input->post("email"),
+            "senha" => md5($this->input->post("senha")),
+            "cpf" => $this->input->post("cpf"),
+            "nvlacesso" => $this->input->post("nvlacesso"),
+            "liberado" => $liberado,
+        );
+        
+        $this->usuario_model->salvaEditado($usuario, $idusuario);
+        $this->session->set_flashdata("success", "Dados atualizados com sucesso!");
+      } else {
+        //Busca o próximo valor da sequence de idusuario
+        $query = $this->db->query("SELECT nextval('shadmin.sqidusuario')");
+        $idusuario = $query->row_array();
+        //Carrega os valores dos campos do formulário
+        $usuario = array(
+            "idusuario" => $idusuario['nextval'],
+            "nome" => $this->input->post("nome"),
+            "email" => $this->input->post("email"),
+            "senha" => md5($this->input->post("senha")),
+            "cpf" => $this->input->post("cpf"),
+            "nvlacesso" => $this->input->post("nvlacesso"),
+            "liberado" => $liberado,
+        );
+
+        $this->usuario_model->salva($usuario);
+        $this->session->set_flashdata("success", "Usuário criado com sucesso!");
+      }
+
+      redirect("/usuarios");
+    } else {
+      $this->load->template("usuarios/formulario.php", $dados);
+    }
+  }
+  
   //Função para abrir o formulário de cadastro de clientes
   public function logacessos() {
     //Valida a sessão

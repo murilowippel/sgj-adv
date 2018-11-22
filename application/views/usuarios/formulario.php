@@ -18,7 +18,7 @@
               <?= form_error("nome") ?>
             </div>
             <div class="form-group col-md-4">
-              <label for="email"><strong>E-mail</strong></label>
+              <label for="email"><strong>E-mail: <span class="obrigatorio">(obrigatório)</span></strong></label>
               <input type="text" name="email" class="form-control" id="email" placeholder="" value="<?php if (isset($usuario)) { echo $usuario['email']; } ?>">
               <?= form_error("email") ?>
             </div>
@@ -31,30 +31,30 @@
               <?= form_error("senha") ?>
             </div>
             <div class="form-group col-md-4">
-              <label for="cpfcnpj"><strong>CPF/CNPJ: <span class="obrigatorio">(obrigatório)</span></strong></label>
-              <input type="text" name="cpfcnpj" class="form-control" id="cpfcnpj" placeholder="" value="<?php if (isset($usuario)) { echo $usuario['cpfcnpj']; } ?>">
-              <?= form_error("cpfcnpj") ?>
+              <label for="cpf"><strong>CPF: <span class="obrigatorio">(obrigatório)</span></strong></label>
+              <input type="text" name="cpf" class="form-control" id="cpf" placeholder="" value="<?php if (isset($usuario)) { echo $usuario['cpf']; } ?>">
+              <?= form_error("cpf") ?>
             </div>
           </div>
           
           <div class="form-row col-md-12">
             <div class="form-group col-md-4">
-              <label for="estado"><strong>Tipo de Usuário: <span class="obrigatorio">(obrigatório)</span></strong></label>
-              <select id="estado" name="estado" class="form-control">
+              <label for="nvlacesso"><strong>Tipo de Usuário: <span class="obrigatorio">(obrigatório)</span></strong></label>
+              <select id="nvlacesso" name="nvlacesso" class="form-control">
                 <option></option>
-                <option>Advogado</option>
-                <option>Auxiliar</option>
-                <option>Cliente</option>
+                <option value="A">Advogado</option>
+                <option value="X">Auxiliar</option>
+                <option value="C">Cliente</option>
               </select>
-              <?= form_error("estado") ?>
+              <?= form_error("nvlacesso") ?>
             </div>
             <div class="form-group col-md-4">
               <label for="myonoffswitch2"><strong>Acesso Liberado: <span class="obrigatorio">(obrigatório)</span></strong></label>
               <div class="onoffswitch2">
-                  <input type="checkbox" name="onoffswitch2" class="onoffswitch2-checkbox" id="myonoffswitch2" checked>
+                  <input type="checkbox" name="liberado" class="onoffswitch2-checkbox" id="myonoffswitch2" checked>
                   <label class="onoffswitch2-label" for="myonoffswitch2">
-                      <span class="onoffswitch2-inner"></span>
-                      <span class="onoffswitch2-switch"></span>
+                      <span value="1" class="onoffswitch2-inner"></span>
+                      <span value="2" class="onoffswitch2-switch"></span>
                   </label>
               </div>
             </div>
