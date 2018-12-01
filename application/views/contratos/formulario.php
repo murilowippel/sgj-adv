@@ -59,7 +59,7 @@
             </div>
             <div class="form-group col-md-4">
               <label for="nmarquivo"><strong>Arquivo (PDF ou WORD): <span class="obrigatorio">(obrigatório)</span></strong></label>
-              <input type="file" name="nmarquivo" class="form-control-file">
+              <input type="file" name="nmarquivo" class="form-control-file" <?php if (!isset($contrato)) { echo "required"; } ?>>
             </div>
           </div>
           
@@ -102,3 +102,4 @@
 
   });
 </script>
+
