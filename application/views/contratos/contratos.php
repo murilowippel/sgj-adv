@@ -26,6 +26,7 @@
                 <th>Tipo de Contrato</th>
                 <th>Data de Início da Vigência</th>
                 <th>Data de Fim da Vigência</th>
+                <th>Arquivo</th>
                 <th></th>
                 <th></th>
               </tr>
@@ -40,37 +41,38 @@
                     <td><?=  $cliente['nome'] ?></td>
                     <td><?= $tipocontrato['nome'] ?></td>
                     <td><?= dataPostgresParaPtBr($contrato['datainiciovigencia']) ?></td>
-                    <td><?= dataPostgresParaPtBr($contrato['datafimvigencia']) ?></td>
+                    <td><?php if($contrato['datafimvigencia']!= ""){ echo dataPostgresParaPtBr($contrato['datafimvigencia']); } ?></td>
+                    <td><a href="<?= base_url("/contratos/download/").$contrato['nmarquivo'].".".$contrato['extarquivo'] ?>" class="btn "><i class="fa fa-download"></i> Baixar</a></td>
                     <td style="text-align: center;"><a href="<?= base_url("/contratos/") ?><?= $contrato['idcontrato'] ?>" class="btn btn-primary">Editar</a></td>
                     <td style="text-align: center;">
-                      <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deletaModal">
+                      <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deletaModal<?= $contrato['idcontrato'] ?>">
                         Excluir
                       </button>
                     </td>
                   </tr>
+                  
+                  <div class="modal fade" id="deletaModal<?= $contrato['idcontrato'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLabel">Apagar Contrato</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                          Deseja apagar o contrato selecionado?
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                          <a href="<?= base_url("/contratos/deletar?idcontrato=") ?><?= $contrato['idcontrato'] ?>" class="btn btn-danger">Sim</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
               <?php endforeach ?>
             </tbody>
           </table>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="modal fade" id="deletaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Apagar Contrato</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          Deseja apagar o contrato selecionado?
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-          <a href="<?= base_url("/contratos/deletar?idcontrato=") ?><?= $contrato['idcontrato'] ?>" class="btn btn-danger">Sim</a>
         </div>
       </div>
     </div>

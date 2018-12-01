@@ -90,6 +90,10 @@ class Contratos extends CI_Controller {
   public function gravar() {
     //Valida a sessão
     autoriza();
+    
+    //Carregando o Model
+    $this->load->model("contrato_model");
+    
     //Atribui o título da página
     $dados['titulopagina'] = "Cadastro de Contrato";
     
@@ -100,11 +104,55 @@ class Contratos extends CI_Controller {
     $this->form_validation->set_rules("datainiciovigencia","data de início","required");
     $this->form_validation->set_error_delimiters("<p class='alert alert-danger'>","</p>");
     
+    //Valida se o campo de fim de vigência possui algum valor, senão atribui null
+    if($this->input->post("datafimvigencia") == ""){
+      $datafim = NULL;
+    } else {
+      $datafim = $this->input->post("datafimvigencia");
+    }
+    
     $sucesso = $this->form_validation->run();
     if ($sucesso) {
-      $this->load->model("contrato_model");
       $idcontrato = $this->input->post("idcontrato");
+      
+      //Montando o nome do arquivo - Título do Arquivo + Nome do Cliente
+      $this->load->model("cliente_model");
+      $cliente = $this->cliente_model->buscaCliente($this->input->post("idcliente"));
+      $nmarquivo = removeAcentos(str_replace(' ', '_', $this->input->post("titulo")." - ".$cliente['nome']));
+      
+      //UPLOAD DO ARQUIVO
+      $resultupload = "";
 
+      $config = array();
+      $path = './files/contratos/';
+
+      $config['upload_path'] = $path;
+      $config['allowed_types'] = "docx|doc|pdf";
+      $config['max_size']    = '15000000';
+      $config['file_name'] = $nmarquivo;
+      
+      $filename= $_FILES["nmarquivo"]["name"];
+      $extarquivo = pathinfo($filename,PATHINFO_EXTENSION);
+      
+      //Apagando um arquivo possível arquivo já existente
+      unlink("./files/contratos/".$nmarquivo.".".$extarquivo);
+      
+      $this->load->library('upload');
+
+      $this->upload->initialize($config);
+
+      if(!is_dir($path)){
+         @mkdir($path, 0777, true);
+      }
+
+      if ( ! $this->upload->do_upload('nmarquivo')) {
+         throw new Exception($this->upload->display_errors());
+      } else {
+        $resultupload = "ok";  
+        $this->upload->data();
+      }
+      
+      //Verificando se é incluir ou editar
       if ($idcontrato) {
         //Carrega os valores dos campos do formulário
         $contrato = array(
@@ -112,8 +160,10 @@ class Contratos extends CI_Controller {
             "idtipocontrato" => $this->input->post("idtipocontrato"),
             "titulo" => $this->input->post("titulo"),
             "descricao" => $this->input->post("descricao"),
+            "nmarquivo" => $nmarquivo,
+            "extarquivo" => $extarquivo,
             "datainiciovigencia" => $this->input->post("datainiciovigencia"),
-            "datafimvigencia" => $this->input->post("datafimvigencia")
+            "datafimvigencia" => $datafim
         );
 
         $this->contrato_model->salvaEditado($contrato, $idcontrato);
@@ -129,8 +179,10 @@ class Contratos extends CI_Controller {
             "idtipocontrato" => $this->input->post("idtipocontrato"),
             "titulo" => $this->input->post("titulo"),
             "descricao" => $this->input->post("descricao"),
+            "nmarquivo" => $nmarquivo,
+            "extarquivo" => $extarquivo,
             "datainiciovigencia" => $this->input->post("datainiciovigencia"),
-            "datafimvigencia" => $this->input->post("datafimvigencia")
+            "datafimvigencia" => $datafim
         );
         
         $this->contrato_model->salva($contrato);
@@ -141,6 +193,20 @@ class Contratos extends CI_Controller {
     } else {
       $this->load->template("contratos/formulario.php", $dados);
     }
+  }
+  
+  
+  // Método que fará o download do arquivo
+  public function download(){
+    // recuperamos o terceiro segmento da url, que é o nome do arquivo
+    $arquivo = $this->uri->segment(3);
+    
+    // definimos original path do arquivo
+    $arquivoPath = './files/contratos/'.$arquivo;
+    
+    // forçamos o download no browser 
+    // passando como parâmetro o path original do arquivo
+    force_download($arquivoPath,null);
   }
 
 }

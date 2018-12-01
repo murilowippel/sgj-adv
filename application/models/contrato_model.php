@@ -13,6 +13,13 @@ class Contrato_model extends CI_Model {
     return $contrato;
   }
 
+  public function buscaContratoCliente($idcliente) {
+    $this->db->where("idcliente", $idcliente);
+    $contrato = $this->db->get("shcliente.contrato")->result_array();
+
+    return $contrato;
+  }
+
   public function salva($contrato) {
     $this->db->insert("shcliente.contrato", $contrato);
   }

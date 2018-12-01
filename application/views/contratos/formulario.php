@@ -57,10 +57,10 @@
               <textarea class="form-control rounded-1" id="descricao" name="descricao" rows="3" style="resize: none;"><?php if (isset($contrato)) { echo $contrato['descricao']; } ?></textarea>
               <?= form_error("descricao") ?>
             </div>
-<!--            <div class="form-group col-md-4">
+            <div class="form-group col-md-4">
               <label for="nmarquivo"><strong>Arquivo (PDF ou WORD): <span class="obrigatorio">(obrigatório)</span></strong></label>
-              <input type="file" class="form-control-file" id="exampleFormControlFile1">
-            </div>-->
+              <input type="file" name="nmarquivo" class="form-control-file">
+            </div>
           </div>
           
           <!--datainiciovigencia, datafimvigencia-->
@@ -72,7 +72,7 @@
             </div>
             <div class="form-group col-md-4">
               <label for="datafimvigencia"><strong>Fim da Vigência:</strong></label>
-              <input type="text" name="datafimvigencia" class="form-control" id="datafimvigencia" placeholder="" value="<?php if (isset($contrato)) { echo dataPostgresParaPtBr($contrato['datafimvigencia']); } ?>">
+              <input type="text" name="datafimvigencia" class="form-control" id="datafimvigencia" placeholder="" value="<?php if (isset($contrato)) { if($contrato['datafimvigencia'] != "") { echo dataPostgresParaPtBr($contrato['datafimvigencia']); } } ?>">
               <?= form_error("datafimvigencia") ?>
             </div>
           </div>

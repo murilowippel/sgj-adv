@@ -56,14 +56,42 @@ class Clientes extends CI_Controller {
     //Valida a sessão
     autoriza();
 
+    //Carregando os models
+    $this->load->model("cliente_model");
+    $this->load->model("contrato_model");
+    
     //Carregar id e apagar registro com o id
     $idcliente = $this->input->get('idcliente');
-    $this->load->model("cliente_model");
-    $this->cliente_model->deleta($idcliente);
+    
+    //Variável para controle de fluxo
+    $resultado = "";
+    
+    //Verificar se possui algum contrato com o IDCLIENTE
+    $contratos = $this->contrato_model->buscaContratoCliente($idcliente);
+    if(is_array($contratos) && count($contratos) > 0){
+      $this->session->set_flashdata("danger", "O cliente selecionado possui contratos cadastrados!");
+    } else {
+      $resultado = "ok";
+    }
+    
+    //Verificar se possui algum processos com o IDCLIENTE
+//    $processos = $this->processo_model->buscaProcessoCliente($idcliente);
+//    if(is_array($processos) && count($processos) > 0){
+//      $this->session->set_flashdata("danger", "O cliente selecionado possui processos cadastrados!");
+//    } else {
+//      $resultado = "ok";
+//    }
+    
+    if($resultado == "ok"){
+      //Apagando o registro
+      $this->cliente_model->deleta($idcliente);
+      //Mensagem de sucesso
+      $this->session->set_flashdata("success", "Cliente excluído com sucesso!");
+    }
 
-    //Mensagem de sucesso e redirecionar
-    $this->session->set_flashdata("success", "Cliente excluído com sucesso!");
+    //Redirecionando pra listagem
     redirect("/clientes");
+    
   }
 
   public function gravar() {
