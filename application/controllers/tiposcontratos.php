@@ -48,14 +48,31 @@ class TiposContratos extends CI_Controller {
   public function deletar() {
     //Valida a sessão
     autoriza();
+    
+    $this->load->model("tipocontrato_model");
+    $this->load->model("contrato_model");
 
     //Carregar id e apagar registro com o id
     $idtipocontrato = $this->input->get('idtipocontrato');
-    $this->load->model("tipocontrato_model");
-    $this->tipocontrato_model->deleta($idtipocontrato);
+    
+    //Variável para controle de fluxo
+    $resultado = "";
+    
+    //Verificar se possui algum contrato com o IDCLIENTE
+    $contratos = $this->contrato_model->buscaContratoTipoContrato($idtipocontrato);
+    if(is_array($contratos) && count($contratos) > 0){
+      $this->session->set_flashdata("danger", "O tipo de contrato selecionado possui contratos relacionados!");
+    } else {
+      $resultado = "ok";
+    }
 
-    //Mensagem de sucesso e redirecionar
-    $this->session->set_flashdata("success", "Tipo de Contrato excluído com sucesso!");
+    if($resultado == "ok"){
+      //Apagando o registro
+      $this->tipocontrato_model->deleta($idtipocontrato);
+      //Mensagem de sucesso
+      $this->session->set_flashdata("success", "Tipo de Contrato excluído com sucesso!");
+    }
+    
     redirect("/tiposcontratos");
   }
 
