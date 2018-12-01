@@ -76,12 +76,18 @@ class Contratos extends CI_Controller {
   public function deletar() {
     //Valida a sessão
     autoriza();
+    
+    $this->load->model("contrato_model");
 
     //Carregar id e apagar registro com o id
     $idcontrato = $this->input->get('idcontrato');
-    $this->load->model("contrato_model");
+    $contrato = $this->contrato_model->buscaContrato($idcontrato);
+    
+    //Apagando um arquivo possível arquivo já existente
+    unlink("./files/contratos/".$contrato['nmarquivo'].".".$contrato['extarquivo']);
+    
     $this->contrato_model->deleta($idcontrato);
-
+    
     //Mensagem de sucesso e redirecionar
     $this->session->set_flashdata("success", "Contrato excluído com sucesso!");
     redirect("/contratos");
