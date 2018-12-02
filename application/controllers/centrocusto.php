@@ -52,14 +52,41 @@ class CentroCusto extends CI_Controller {
     autoriza();
 
     $this->load->model("centrocusto_model");
+    $this->load->model("saida_model");
+    $this->load->model("entrada_model");
 
     //Carregar id e apagar registro com o id
     $idcentrocusto = $this->input->get('idcentrocusto');
-    $this->centrocusto_model->deleta($idcentrocusto);
 
-    //Mensagem de sucesso e redirecionar
-    $this->session->set_flashdata("success", "Centro de Custo excluído com sucesso!");
-    redirect("/centrocusto");
+    //Variável para controle de fluxo
+    $resultado = "";
+
+    //Verificar se possui algum contrato com o IDCLIENTE
+    $saidas = $this->saida_model->buscaSaidaCentroCusto($idcentrocusto);
+    if (is_array($saidas) && count($saidas) > 0) {
+      $this->session->set_flashdata("danger", "O centro de custo selecionado possui saídas cadastradas!");
+      //Redirecionando pra listagem
+      redirect("/centrocusto");
+    } else {
+      $resultado = "ok";
+    }
+
+    //Verificar se possui algum contrato com o IDCLIENTE
+    $entrada = $this->entrada_model->buscaEntradaCentroCusto($idcentrocusto);
+    if (is_array($entrada) && count($entrada) > 0) {
+      $this->session->set_flashdata("danger", "O centro de custo selecionado possui entradas cadastradas!");
+      //Redirecionando pra listagem
+      redirect("/centrocusto");
+    } else {
+      $resultado = "ok";
+    }
+
+    if ($resultado == "ok") {
+      //Mensagem de sucesso e redirecionar
+      $this->centrocusto_model->deleta($idcentrocusto);
+      $this->session->set_flashdata("success", "Centro de Custo excluído com sucesso!");
+      redirect("/centrocusto");
+    }
   }
 
   public function gravar() {

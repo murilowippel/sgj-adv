@@ -12,6 +12,13 @@ class Entrada_model extends CI_Model {
 
     return $entrada;
   }
+  
+  public function buscaEntradaCentroCusto($idcentrocusto) {
+    $this->db->where("idcentrocusto", $idcentrocusto);
+    $entradas = $this->db->get("shcliente.entrada")->result_array();
+
+    return $entradas;
+  }
 
   public function salva($entrada) {
     $this->db->insert("shcliente.entrada", $entrada);

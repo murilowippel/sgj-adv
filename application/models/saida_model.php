@@ -12,6 +12,13 @@ class Saida_model extends CI_Model {
 
     return $saida;
   }
+  
+  public function buscaSaidaCentroCusto($idcentrocusto) {
+    $this->db->where("idcentrocusto", $idcentrocusto);
+    $saidas = $this->db->get("shcliente.saida")->result_array();
+
+    return $saidas;
+  }
 
   public function salva($saida) {
     $this->db->insert("shcliente.saida", $saida);
