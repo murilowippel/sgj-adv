@@ -32,41 +32,46 @@
               </tr>
             </thead>
             <tbody>
-                <tr>
-                  <td>Valor referente aos serviços prestados para o processo nº 123</td>
-                  <td>Ações de Conciliação</td>
-                  <td>Murilo Henrique Wippel</td>
-                  <td>R$ 10000,00</td>
-                  <td>15/12/2018</td>
-                  <td style="text-align: center; width: 122px;"><a href="<?= base_url("/tiposcontratos/") ?>" class="btn btn-primary">Editar</a></td>
-                  <td style="text-align: center; width: 122px;">
-                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deletaModal">
-                      Excluir
-                    </button>
-                  </td>
-                </tr>
+                <?php 
+                foreach ($entradas as $entrada) : 
+                  $cliente = $this->cliente_model->buscaCliente($entrada['idcliente']);
+                  $centrocusto = $this->centrocusto_model->buscaCentroCusto($entrada['idcentrocusto']); ?>
+                  <tr>
+                    <td><?= $entrada['descricao'] ?></td>
+                    <td><?= $centrocusto['nome'] ?></td>
+                    <td><?= $cliente['nome'] ?></td>
+                    <td><?= $entrada['valor'] ?></td>
+                    <td><?= dataPostgresParaPtBr($entrada['datapagamento']) ?></td>
+                    <td style="text-align: center;"><a href="<?= base_url("/entradas/") ?><?= $entrada['identrada'] ?>" class="btn btn-primary">Editar</a></td>
+                    <td style="text-align: center;">
+                      <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deletaModal<?= $entrada['identrada'] ?>">
+                        Excluir
+                      </button>
+                    </td>
+                  </tr>
+                  
+                  <div class="modal fade" id="deletaModal<?= $entrada['identrada'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLabel">Apagar Entrada</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                          Deseja apagar a entrada selecionada?
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                          <a href="<?= base_url("/entradas/deletar?identrada=") ?><?= $entrada['identrada'] ?>" class="btn btn-danger">Sim</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+              <?php endforeach ?>
             </tbody>
           </table>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="modal fade" id="deletaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Excluir Tipo de Contrato</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          Deseja excluir o tipo de contrato selecionado?
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-          <a href="<?= base_url("/tiposcontratos/deletar?idtipocontrato=") ?><?= $tipocontrato['idtipocontrato'] ?>" class="btn btn-danger">Sim</a>
         </div>
       </div>
     </div>
