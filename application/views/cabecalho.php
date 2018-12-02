@@ -113,7 +113,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <li class="nav-item">
           <a class="nav-link" href="<?= base_url("agenda") ?>">
             <i class="fas fa-fw fa-calendar-alt"></i>
-            <span>Agenda</span>
+            <span>Compromissos</span>
           </a>
         </li>
         <li class="nav-item dropdown"><!--active-->

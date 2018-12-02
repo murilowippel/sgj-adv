@@ -4,7 +4,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 /**
  * Controller para ações da página inicial do sistema
- * Executada por padrão
  */
 class Contratos extends CI_Controller {
 

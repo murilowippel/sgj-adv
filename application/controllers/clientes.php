@@ -114,6 +114,7 @@ class Clientes extends CI_Controller {
     $this->form_validation->set_error_delimiters("<p class='alert alert-danger'>","</p>");
     
     $sucesso = $this->form_validation->run();
+    
     if ($sucesso) {
       $this->load->model("cliente_model");
       $idcliente = $this->input->post("idcliente");

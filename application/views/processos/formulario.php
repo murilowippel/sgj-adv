@@ -13,53 +13,64 @@
 
           <div class="form-row col-md-12">
             <div class="form-group col-md-4">
+              <label for="titulo"><strong>Título: <span class="obrigatorio">(obrigatório)</span></strong></label>
+              <input maxlength="250" type="text" name="titulo" class="form-control" id="titulo" placeholder="" value="<?php if (isset($processo)) { echo $processo['titulo']; } ?>">
+              <?= form_error("titulo") ?>
+            </div>
+            <div class="form-group col-md-4">
+              <label for="numero"><strong>Nº do processo:</strong></label>
+              <input type="text" name="numero" class="form-control" id="numero" placeholder="" value="<?php if (isset($processo)) { echo $processo['numero']; } ?>">
+              <?= form_error("numero") ?>
+            </div>
+            <div class="form-group col-md-4">
               <label for="idcliente"><strong>Cliente: <span class="obrigatorio">(obrigatório)</span></strong></label>
               <select id="idcliente" name="idcliente" class="form-control">
                 <option selected></option>
-                <option value="1">Cliente 123</option>
+                <?php foreach ($clientes as $cliente) : ?>
+                  <?php if($processo['idcliente'] == $cliente['idcliente']){ ?>
+                    <option value="<?= $cliente['idcliente'] ?>" selected><?= $cliente['nome'] ?></option>
+                  <?php } else { ?>
+                    <option value="<?= $cliente['idcliente'] ?>"><?= $cliente['nome'] ?></option>
+                  <?php } ?>
+                <?php endforeach; ?>
               </select>
               <?= form_error("idcliente") ?>
-            </div>
-            <div class="form-group col-md-4">
-              <label for="titulo"><strong>Título: <span class="obrigatorio">(obrigatório)</span></strong></label>
-              <input maxlength="250" type="text" name="titulo" class="form-control" id="titulo" placeholder="" value="<?php if (isset($contrato)) { echo $contrato['titulo']; } ?>">
-              <?= form_error("titulo") ?>
-            </div>
-            <div class="form-group col-md-4">
-              <label for="titulo"><strong>Nº do processo:</strong></label>
-              <input type="text" name="titulo" class="form-control" id="titulo" placeholder="" value="<?php if (isset($contrato)) { echo $contrato['titulo']; } ?>">
-              <?= form_error("titulo") ?>
             </div>
           </div>
           
           <div class="form-row col-md-12">
             <div class="form-group col-md-4">
               <label for="descricao"><strong>Descrição:</strong></label>
-              <!--<input type="text" name="dscricao" class="form-control" id="dscricao" placeholder="" value="<?php if (isset($contrato)) { echo $contrato['dscricao']; } ?>">-->
               <textarea class="form-control rounded-1" id="descricao" name="descricao" rows="3" style="resize: none;"></textarea>
-              <?= form_error("titulo") ?>
+              <?= form_error("descricao") ?>
             </div>
             
             <div class="form-group col-md-4">
-              <label for="idcontrato"><strong>Contrato:</strong></label>
-              <select id="idcliente" name="idcliente" class="form-control">
+              <label for="idcontrato"><strong>Contrato: <span class="obrigatorio">(obrigatório)</span></strong></label>
+              <select id="idcontrato" name="idcontrato" class="form-control">
                 <option selected></option>
-                <option value="1">Contrato 123</option>
+                <?php foreach ($contratos as $contrato) : ?>
+                  <?php if($processo['idcontrato'] == $contrato['idcontrato']){ ?>
+                    <option value="<?= $contrato['idcontrato'] ?>" selected><?= $contrato['titulo'] ?></option>
+                  <?php } else { ?>
+                    <option value="<?= $contrato['idcontrato'] ?>"><?= $contrato['titulo'] ?></option>
+                  <?php } ?>
+                <?php endforeach; ?>
               </select>
-              <?= form_error("idcliente") ?>
+              <?= form_error("idcontrato") ?>
             </div>
           </div>
           
           <div class="form-row col-md-12">
             <div class="form-group col-md-4">
-              <label for="titulo"><strong>Valor dos Honorários:</strong></label>
-              <input type="text" name="titulo" class="form-control" id="titulo" placeholder="" value="<?php if (isset($contrato)) { echo $contrato['titulo']; } ?>">
+              <label for="valorhonorario"><strong>Valor dos Honorários:</strong></label>
+              <input type="text" name="valorhonorario" class="form-control" id="valorhonorario" placeholder="" value="<?php if (isset($processo)) { echo $processo['valorhonorario']; } ?>">
               <?= form_error("titulo") ?>
             </div>
             <div class="form-group col-md-4">
               <label for="dataabertura"><strong>Data de Abertura:</strong></label>
-              <input type="text" name="dataabertura" class="form-control" id="dataabertura" placeholder="" value="<?php if (isset($processo)) { echo dataPostgresParaPtBr($processo['datainiciovigencia']); } ?>">
-              <?= form_error("datainiciovigencia") ?>
+              <input type="text" name="dataabertura" class="form-control" id="dataabertura" placeholder="" value="<?php if (isset($processo)) { echo dataPostgresParaPtBr($processo['dataabertura']); } ?>">
+              <?= form_error("dataabertura") ?>
             </div>
           </div>
           

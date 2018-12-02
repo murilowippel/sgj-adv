@@ -23,20 +23,46 @@
                 <th>Descrição</th>
                 <th></th>
                 <th></th>
-                <th></th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>Partilha de Herança</td>
-                <td>12345679</td>
-                <td>Murilo Henrique Wippel</td>
-                <td>01/12/2018</td>
-                <td>Processo para realização da partilha dos bens do sr. Murilo Henrique Wippel...</td>
-                <td style="text-align: center;"><a href="<?= base_url("/processos/atualizacoes/1") ?>" class="btn btn-light">Atualizações</a></td>
-                <td style="text-align: center;"><a href="<?= base_url("/processos/novo") ?>" class="btn btn-primary">Editar</a></td>
-                <td style="text-align: center;"><a href="<?= base_url("/processos/novo") ?>" class="btn btn-danger">Apagar</a></td>
-              </tr>
+              <?php 
+                foreach ($processos as $processo) : 
+                  $cliente = $this->cliente_model->buscaCliente($processo['idcliente']); ?>
+                  <tr>
+                    <td><?= $processo['titulo'] ?></td>
+                    <td><?= $processo['numero'] ?></td>
+                    <td><?=  $cliente['nome'] ?></td>
+                    <td><?= dataPostgresParaPtBr($processo['dataabertura']) ?></td>
+                    <td><?= $processo['descricao'] ?></td>
+                    <td style="text-align: center;"><a href="<?= base_url("/processos/") ?><?= $processo['idprocesso'] ?>" class="btn btn-primary">Editar</a></td>
+                    <td style="text-align: center;">
+                      <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deletaModal<?= $processo['idprocesso'] ?>">
+                        Excluir
+                      </button>
+                    </td>
+                  </tr>
+                  
+                  <div class="modal fade" id="deletaModal<?= $processo['idprocesso'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLabel">Apagar Processo</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                          Deseja apagar o processo selecionado?
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                          <a href="<?= base_url("/processos/deletar?idprocesso=") ?><?= $processo['idprocesso'] ?>" class="btn btn-danger">Sim</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                <?php endforeach ?>
             </tbody>
           </table>
         </div>
