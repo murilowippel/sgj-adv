@@ -141,18 +141,4 @@ class Processos extends CI_Controller {
     }
   }
 
-  //Função para abrir a página de atualizações do processo
-  public function atualizacoes() {
-    autoriza();
-    $dados['titulopagina'] = "Atualizações de Processo";
-    $this->load->template('processos/atualizacoes.php', $dados);
-  }
-
-  //Função para abrir a página de atualizações do processo
-  public function novaatualizacao() {
-    autoriza();
-    $dados['titulopagina'] = "Cadastro de Atualização de Processo";
-    $this->load->template('processos/formularioatualizacao.php', $dados);
-  }
-
 }

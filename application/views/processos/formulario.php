@@ -41,7 +41,7 @@
           <div class="form-row col-md-12">
             <div class="form-group col-md-4">
               <label for="descricao"><strong>Descrição:</strong></label>
-              <textarea class="form-control rounded-1" id="descricao" name="descricao" rows="3" style="resize: none;"></textarea>
+              <textarea class="form-control rounded-1" id="descricao" name="descricao" rows="3" style="resize: none;"><?php if (isset($processo)) { echo $processo['descricao']; } ?></textarea>
               <?= form_error("descricao") ?>
             </div>
             
@@ -90,7 +90,7 @@
 <script type="text/javascript">
   $(document).ready(function () {
     $('#dataabertura').mask('00/00/0000');
-
+    //$('#valorhonorario').mask('000.000.000.000.000,00', {reverse: true});
     $("#limpar").click(function () {
       $('#formProcesso')[0].reset();
     });

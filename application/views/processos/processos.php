@@ -23,6 +23,7 @@
                 <th>Descrição</th>
                 <th></th>
                 <th></th>
+                <th></th>
               </tr>
             </thead>
             <tbody>
@@ -35,6 +36,7 @@
                     <td><?=  $cliente['nome'] ?></td>
                     <td><?= dataPostgresParaPtBr($processo['dataabertura']) ?></td>
                     <td><?= $processo['descricao'] ?></td>
+                    <td style="text-align: center;"><a href="<?= base_url("/atualizacoes/") ?><?= $processo['idprocesso'] ?>" class="btn btn-light">Atualizações</a></td>
                     <td style="text-align: center;"><a href="<?= base_url("/processos/") ?><?= $processo['idprocesso'] ?>" class="btn btn-primary">Editar</a></td>
                     <td style="text-align: center;">
                       <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deletaModal<?= $processo['idprocesso'] ?>">

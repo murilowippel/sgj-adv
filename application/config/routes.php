@@ -54,6 +54,8 @@ $route['clientes/(:num)'] = 'clientes/editar/$1';
 $route['tiposcontratos/(:num)'] = 'tiposcontratos/editar/$1';
 $route['contratos/(:num)'] = 'contratos/editar/$1';
 $route['processos/(:num)'] = 'processos/editar/$1';
+$route['atualizacoes/(:num)'] = 'atualizacoes/index/$1';
+$route['atualizacoes/editar/(:num)'] = 'atualizacoes/editar/$1';
 $route['usuarios/(:num)'] = 'usuarios/editar/$1';
 
 
