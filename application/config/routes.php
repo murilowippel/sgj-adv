@@ -61,6 +61,7 @@ $route['agenda/(:num)'] = 'agenda/editar/$1';
 $route['centrocusto/(:num)'] = 'centrocusto/editar/$1';
 $route['entradas/(:num)'] = 'entradas/editar/$1';
 $route['saidas/(:num)'] = 'saidas/editar/$1';
+$route['ged/(:num)'] = 'ged/editar/$1';
 
 
 $route['contratos/download/(:any)/(:any)'] = 'contratos/download/$1/$2';
