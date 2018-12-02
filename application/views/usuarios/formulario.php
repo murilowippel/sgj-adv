@@ -42,9 +42,9 @@
               <label for="nvlacesso"><strong>Tipo de Usuário: <span class="obrigatorio">(obrigatório)</span></strong></label>
               <select id="nvlacesso" name="nvlacesso" class="form-control">
                 <option></option>
-                <option value="A">Advogado</option>
-                <option value="X">Auxiliar</option>
-                <option value="C">Cliente</option>
+                <option value="A" <?php if (isset($usuario) && $usuario['nvlacesso'] == "A") { echo "selected"; } ?>>Advogado</option>
+                <option value="X" <?php if (isset($usuario) && $usuario['nvlacesso'] == "X") { echo "selected"; } ?>>Auxiliar</option>
+                <option value="C" <?php if (isset($usuario) && $usuario['nvlacesso'] == "C") { echo "selected"; } ?>>Cliente</option>
               </select>
               <?= form_error("nvlacesso") ?>
             </div>
