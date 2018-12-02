@@ -6,7 +6,7 @@
     
     <div class="clear"></div>
     <div class="col-md-8">
-      <form id="formAtualizacaoProcesso" action="<?= base_url("atualizacoes/gravar") ?>" method="post">
+      <form id="formAtualizacaoProcesso" action="<?= base_url("atualizacoes/gravar") ?>" method="post" enctype="multipart/form-data">
         <div class="borda">
           
           <input type="hidden" name="idatualizacaoprocesso" value="<?php if (isset($atualizacaoprocesso)) { echo $atualizacaoprocesso['idatualizacaoprocesso']; } ?>" />
@@ -33,7 +33,7 @@
             </div>
             <div class="form-group col-md-6">
               <label for="nmarquivo"><strong>Arquivo (PDF ou WORD):</strong></label>
-              <input type="file" class="form-control-file" id="exampleFormControlFile1">
+              <input type="file" name="nmarquivo" class="form-control-file" id="exampleFormControlFile1">
             </div>
           </div>
           

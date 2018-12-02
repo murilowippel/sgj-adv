@@ -21,6 +21,7 @@
                 <th>Titulo</th>
                 <th>Descrição</th>
                 <th>Data de atualização</th>
+                <th>Arquivo</th>
                 <th></th>
                 <th></th>
               </tr>
@@ -32,6 +33,7 @@
                   <td><?= $atualizacao['titulo'] ?></td>
                   <td><?= $atualizacao['descricao'] ?></td>
                   <td><?= dataPostgresParaPtBr($atualizacao['dataatualizacao']) ?></td>
+                  <td><a href="<?= base_url("/atualizacoes/download/").$atualizacao['nmarquivo'].".".$atualizacao['extarquivo'] ?>" class="btn "><i class="fa fa-download"></i> Baixar</a></td>
                   <td style="text-align: center; width: 122px;"><a href="<?= base_url("/atualizacoes/editar/") ?><?= $atualizacao['idatualizacaoprocesso'] ?>" class="btn btn-primary">Editar</a></td>
                   <td style="text-align: center; width: 122px;">
                     <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deletaModal<?= $atualizacao['idatualizacaoprocesso'] ?>">
