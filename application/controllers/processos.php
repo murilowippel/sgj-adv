@@ -74,13 +74,30 @@ class Processos extends CI_Controller {
     autoriza();
 
     $this->load->model("processo_model");
+    $this->load->model("atualizacao_model");
 
     //Carregar id e apagar registro com o id
     $idprocesso = $this->input->get('idprocesso');
-    $this->processo_model->deleta($idprocesso);
-
-    //Mensagem de sucesso e redirecionar
-    $this->session->set_flashdata("success", "Processo excluído com sucesso!");
+    
+    //Variável para controle de fluxo
+    $resultado = "";
+    
+    //Verificar se possui alguma atualização com o IDPROCESSO
+    $atualizacoes = $this->atualizacao_model->buscaTodosProcesso($idprocesso);
+    
+    if(is_array($atualizacoes) && count($atualizacoes) > 0){
+      $this->session->set_flashdata("danger", "O processo selecionado possui atualizações cadastrados!");
+    } else {
+      $resultado = "ok";
+    }
+    
+    if($resultado == "ok"){
+      //Apagando o registro
+      $this->processo_model->deleta($idprocesso);
+      //Mensagem de sucesso
+      $this->session->set_flashdata("success", "Processo excluído com sucesso!");
+    }
+    
     redirect("/processos");
   }
   
@@ -92,7 +109,22 @@ class Processos extends CI_Controller {
     
     $this->form_validation->set_rules("titulo","titulo","required");
     $this->form_validation->set_rules("valorhonorario","valorhonorario","required");
+    $this->form_validation->set_rules("idcontrato", "contrato", "required");
+    $this->form_validation->set_rules("idcliente", "cliente", "required");
     $this->form_validation->set_error_delimiters("<p class='alert alert-danger'>","</p>");
+    
+    //Valida se o campo de data de abertura e numero possui algum valor, senão atribui null
+    if ($this->input->post("dataabertura") == "") {
+      $dataabertura = NULL;
+    } else {
+      $dataabertura = $this->input->post("dataabertura");
+    }
+    
+    if ($this->input->post("numero") == "") {
+      $numero = NULL;
+    } else {
+      $numero = $this->input->post("numero");
+    }
     
     $sucesso = $this->form_validation->run();
     if ($sucesso) {
@@ -104,9 +136,9 @@ class Processos extends CI_Controller {
         $processo = array(
             "idcliente" => $this->input->post("idcliente"),
             "titulo" => $this->input->post("titulo"),
-            "numero" => $this->input->post("numero"),
+            "numero" => $numero,
             "descricao" => $this->input->post("descricao"),
-            "dataabertura" => dataPtBrParaPostgres($this->input->post("dataabertura")),
+            "dataabertura" => $dataabertura,
             "valorhonorario" => $this->input->post("valorhonorario"),
             "idusuariocriador" => $this->session->userdata['usuario_logado']['idusuario'],
             "idcontrato" => $this->input->post("idcontrato")
@@ -123,9 +155,9 @@ class Processos extends CI_Controller {
             "idprocesso" => $idprocesso['nextval'],
             "idcliente" => $this->input->post("idcliente"),
             "titulo" => $this->input->post("titulo"),
-            "numero" => $this->input->post("numero"),
+            "numero" => $numero,
             "descricao" => $this->input->post("descricao"),
-            "dataabertura" => dataPtBrParaPostgres($this->input->post("dataabertura")),
+            "dataabertura" => $dataabertura,
             "valorhonorario" => $this->input->post("valorhonorario"),
             "idusuariocriador" => $this->session->userdata['usuario_logado']['idusuario'],
             "idcontrato" => $this->input->post("idcontrato")

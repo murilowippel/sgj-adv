@@ -63,7 +63,7 @@
           
           <div class="form-row col-md-12">
             <div class="form-group col-md-4">
-              <label for="valorhonorario"><strong>Valor dos Honorários:</strong></label>
+              <label for="valorhonorario"><strong>Valor dos Honorários: <span class="obrigatorio">(obrigatório)</span></strong></label>
               <input type="text" name="valorhonorario" class="form-control" id="valorhonorario" placeholder="" value="<?php if (isset($processo)) { echo $processo['valorhonorario']; } ?>">
               <?= form_error("titulo") ?>
             </div>

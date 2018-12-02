@@ -77,19 +77,26 @@ class Contratos extends CI_Controller {
     autoriza();
 
     $this->load->model("contrato_model");
+    $this->load->model("processo_model");
 
     //Carregar id e apagar registro com o id
     $idcontrato = $this->input->get('idcontrato');
-    $contrato = $this->contrato_model->buscaContrato($idcontrato);
 
-    //Apagando um arquivo possível arquivo já existente
-    unlink("./files/contratos/" . $contrato['nmarquivo'] . "." . $contrato['extarquivo']);
-
-    $this->contrato_model->deleta($idcontrato);
-
-    //Mensagem de sucesso e redirecionar
-    $this->session->set_flashdata("success", "Contrato excluído com sucesso!");
-    redirect("/contratos");
+    //Verificar se possui algum processos com o IDCLIENTE
+    $processos = $this->processo_model->buscaProcessoContrato($idcontrato);
+    if (is_array($processos) && count($processos) > 0) {
+      $this->session->set_flashdata("danger", "O cliente selecionado possui processos cadastrados!");
+      //Redirecionando pra listagem
+      redirect("/contratos");
+    } else {
+      $contrato = $this->contrato_model->buscaContrato($idcontrato);
+      //Apagando um arquivo possível arquivo já existente
+      unlink("./files/contratos/" . $contrato['nmarquivo'] . "." . $contrato['extarquivo']);
+      $this->contrato_model->deleta($idcontrato);
+      //Mensagem de sucesso e redirecionar
+      $this->session->set_flashdata("success", "Contrato excluído com sucesso!");
+      redirect("/contratos");
+    }
   }
 
   public function gravar() {
@@ -115,25 +122,26 @@ class Contratos extends CI_Controller {
     } else {
       $datafim = $this->input->post("datafimvigencia");
     }
-    
+
     //Executa validações
     $sucesso = $this->form_validation->run();
-    
+
     if ($sucesso) {
       //Nome+extensão
       $file = $_FILES["nmarquivo"]["name"];
       $nmarquivo = "";
       $extarquivo = "";
-      
+
       //Se for enviado um arquivo para upload
       if ($file != "") {
+        
         //Buscando o nome do cliente
         $this->load->model("cliente_model");
         $cliente = $this->cliente_model->buscaCliente($this->input->post("idcliente"));
-        
-        //nome do arquivo
-        $nmarquivo = removeAcentos(str_replace(' ', '_', $cliente['nome']."-".pathinfo($file, PATHINFO_FILENAME)));
 
+        //nome do arquivo
+        $nmarquivo = removeAcentos(str_replace(' ', '_', $cliente['nome'] . "-" . pathinfo($file, PATHINFO_FILENAME)));
+        
         //extensão do arquivo
         $extarquivo = pathinfo($file, PATHINFO_EXTENSION);
 
@@ -161,10 +169,10 @@ class Contratos extends CI_Controller {
           $this->upload->data();
         }
       }
-      
+
       //Carrega idcontrato (se não houver é nulo)
       $idcontrato = $this->input->post("idcontrato");
-      
+
       //Verificando se é incluir ou editar
       if ($idcontrato) {
         //Buscar nome do arquivo e extensão caso não for upado um arquivo na edição
@@ -175,7 +183,7 @@ class Contratos extends CI_Controller {
           $extarquivo = $contrato1['extarquivo'];
         } else {
           //Apagando um arquivo possível arquivo já existente
-          unlink("./files/contratos/".$contrato1['nmarquivo'].".".$contrato1['extarquivo']);
+          unlink("./files/contratos/" . $contrato1['nmarquivo'] . "." . $contrato1['extarquivo']);
         }
 
         //Carrega os valores dos campos do formulário
@@ -196,7 +204,7 @@ class Contratos extends CI_Controller {
         //Busca o próximo valor da sequence de idcontrato
         $query = $this->db->query("SELECT nextval('shcliente.sqidcontrato')");
         $idcontrato = $query->row_array();
-        
+
         //Carrega os valores dos campos do formulário
         $contrato = array(
           "idcontrato" => $idcontrato['nextval'],

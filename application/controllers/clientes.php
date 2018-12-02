@@ -59,6 +59,7 @@ class Clientes extends CI_Controller {
     //Carregando os models
     $this->load->model("cliente_model");
     $this->load->model("contrato_model");
+    $this->load->model("processo_model");
     
     //Carregar id e apagar registro com o id
     $idcliente = $this->input->get('idcliente');
@@ -70,17 +71,22 @@ class Clientes extends CI_Controller {
     $contratos = $this->contrato_model->buscaContratoCliente($idcliente);
     if(is_array($contratos) && count($contratos) > 0){
       $this->session->set_flashdata("danger", "O cliente selecionado possui contratos cadastrados!");
+      //Redirecionando pra listagem
+      redirect("/clientes");
     } else {
       $resultado = "ok";
     }
     
     //Verificar se possui algum processos com o IDCLIENTE
-//    $processos = $this->processo_model->buscaProcessoCliente($idcliente);
-//    if(is_array($processos) && count($processos) > 0){
-//      $this->session->set_flashdata("danger", "O cliente selecionado possui processos cadastrados!");
-//    } else {
-//      $resultado = "ok";
-//    }
+    $processos = $this->processo_model->buscaProcessoCliente($idcliente);
+    if(is_array($processos) && count($processos) > 0){
+      $resultado = "";
+      $this->session->set_flashdata("danger", "O cliente selecionado possui processos cadastrados!");
+      //Redirecionando pra listagem
+      redirect("/clientes");
+    } else {
+      $resultado = "ok";
+    }
     
     if($resultado == "ok"){
       //Apagando o registro
@@ -88,9 +94,6 @@ class Clientes extends CI_Controller {
       //Mensagem de sucesso
       $this->session->set_flashdata("success", "Cliente excluído com sucesso!");
     }
-
-    //Redirecionando pra listagem
-    redirect("/clientes");
     
   }
 

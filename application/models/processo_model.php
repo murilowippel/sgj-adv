@@ -12,6 +12,20 @@ class Processo_model extends CI_Model {
 
     return $processo;
   }
+  
+  public function buscaProcessoCliente($idcliente) {
+    $this->db->where("idcliente", $idcliente);
+    $processo = $this->db->get("shcliente.processo")->result_array();
+
+    return $processo;
+  }
+  
+  public function buscaProcessoContrato($idcontrato) {
+    $this->db->where("idcontrato", $idcontrato);
+    $processo = $this->db->get("shcliente.processo")->result_array();
+
+    return $processo;
+  }
 
   public function salva($processo) {
     $this->db->insert("shcliente.processo", $processo);

@@ -7,6 +7,13 @@
       <a href="<?= base_url("/processos/novo") ?>" class="btn btn-primary">Novo</a>
     </div>
     <div class="clear"></div>
+    <?php if ($this->session->flashdata("success")) : ?>
+      <p class="alert alert-success"><?= $this->session->flashdata("success") ?></p>
+    <?php endif ?>
+
+    <?php if ($this->session->flashdata("danger")) : ?>
+      <p class="alert alert-danger"><?= $this->session->flashdata("danger") ?></p>
+    <?php endif ?>
     <hr>
     <!-- DataTables Example -->
     <div class="card mb-3">
@@ -34,7 +41,7 @@
                     <td><?= $processo['titulo'] ?></td>
                     <td><?= $processo['numero'] ?></td>
                     <td><?=  $cliente['nome'] ?></td>
-                    <td><?= dataPostgresParaPtBr($processo['dataabertura']) ?></td>
+                    <td><?php if($processo['dataabertura'] != ""){ echo dataPostgresParaPtBr($processo['dataabertura']); } ?></td>
                     <td><?= $processo['descricao'] ?></td>
                     <td style="text-align: center;"><a href="<?= base_url("/atualizacoes/") ?><?= $processo['idprocesso'] ?>" class="btn btn-light">Atualizações</a></td>
                     <td style="text-align: center;"><a href="<?= base_url("/processos/") ?><?= $processo['idprocesso'] ?>" class="btn btn-primary">Editar</a></td>
