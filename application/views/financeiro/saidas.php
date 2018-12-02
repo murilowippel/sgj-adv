@@ -31,41 +31,45 @@
               </tr>
             </thead>
             <tbody>
+              <?php
+              foreach ($saidas as $saida) :
+                $centrocusto = $this->centrocusto_model->buscaCentroCusto($saida['idcentrocusto']);
+                ?>
                 <tr>
-                  <td>Valor referente ao conserto do telhado do escritório</td>
-                  <td>Manutenção do Escritório</td>
-                  <td>R$ 500,00</td>
-                  <td>22/11/2018</td>
-                  <td style="text-align: center; width: 122px;"><a href="<?= base_url("/tiposcontratos/") ?>" class="btn btn-primary">Editar</a></td>
-                  <td style="text-align: center; width: 122px;">
-                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deletaModal">
+                  <td><?= $saida['descricao'] ?></td>
+                  <td><?= $centrocusto['nome'] ?></td>
+                  <td><?= $saida['valor'] ?></td>
+                  <td><?php if (isset($saida['datapagamento'])) { echo dataPostgresParaPtBr($saida['datapagamento']); } ?></td>
+                  <td style="text-align: center;"><a href="<?= base_url("/saidas/") ?><?= $saida['idsaida'] ?>" class="btn btn-primary">Editar</a></td>
+                  <td style="text-align: center;">
+                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deletaModal<?= $saida['idsaida'] ?>">
                       Excluir
                     </button>
                   </td>
                 </tr>
+
+                <div class="modal fade" id="deletaModal<?= $saida['idsaida'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Apagar Saída</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        Deseja apagar a saída selecionada?
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                        <a href="<?= base_url("/saidas/deletar?idsaida=") ?><?= $saida['idsaida'] ?>" class="btn btn-danger">Sim</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              <?php endforeach ?>
             </tbody>
           </table>
         </div>
       </div>
     </div>
-  </div>
-
-  <div class="modal fade" id="deletaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Excluir Tipo de Contrato</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          Deseja excluir o tipo de contrato selecionado?
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-          <a href="<?= base_url("/tiposcontratos/deletar?idtipocontrato=") ?><?= $tipocontrato['idtipocontrato'] ?>" class="btn btn-danger">Sim</a>
-        </div>
-      </div>
-    </div>
-  </div>

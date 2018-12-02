@@ -91,7 +91,6 @@ class Entradas extends CI_Controller {
     $this->form_validation->set_rules("idcentrocusto", "centro de custo", "required");
     $this->form_validation->set_rules("descricao", "descrição", "required");
     $this->form_validation->set_rules("valor", "valor", "required");
-    $this->form_validation->set_rules("datapagamento", "data de pagamento", "required");
     $this->form_validation->set_error_delimiters("<p class='alert alert-danger'>", "</p>");
 
     $sucesso = $this->form_validation->run();

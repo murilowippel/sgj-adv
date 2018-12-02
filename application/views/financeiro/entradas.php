@@ -41,7 +41,7 @@
                     <td><?= $centrocusto['nome'] ?></td>
                     <td><?= $cliente['nome'] ?></td>
                     <td><?= $entrada['valor'] ?></td>
-                    <td><?= dataPostgresParaPtBr($entrada['datapagamento']) ?></td>
+                    <td><?php if(isset($entrada['datapagamento'])){ echo dataPostgresParaPtBr($entrada['datapagamento']); } ?></td>
                     <td style="text-align: center;"><a href="<?= base_url("/entradas/") ?><?= $entrada['identrada'] ?>" class="btn btn-primary">Editar</a></td>
                     <td style="text-align: center;">
                       <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deletaModal<?= $entrada['identrada'] ?>">
