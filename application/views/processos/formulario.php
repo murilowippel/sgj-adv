@@ -69,7 +69,7 @@
             </div>
             <div class="form-group col-md-4">
               <label for="dataabertura"><strong>Data de Abertura:</strong></label>
-              <input type="text" name="dataabertura" class="form-control" id="dataabertura" placeholder="" value="<?php if (isset($processo)) { echo dataPostgresParaPtBr($processo['dataabertura']); } ?>">
+              <input type="text" name="dataabertura" class="form-control" id="dataabertura" placeholder="" value="<?php if (isset($processo) && $processo['dataabertura'] != "") { echo dataPostgresParaPtBr($processo['dataabertura']); } ?>">
               <?= form_error("dataabertura") ?>
             </div>
           </div>

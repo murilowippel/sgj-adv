@@ -13,6 +13,13 @@ class Cliente_model extends CI_Model {
     return $cliente;
   }
 
+  public function buscaClienteCpf($cpf) {
+    $this->db->where("cpfcnpj", $cpf);
+    $cliente = $this->db->get("shcliente.cliente")->row_array();
+
+    return $cliente;
+  }
+
   public function salva($cliente) {
     $this->db->insert("shcliente.cliente", $cliente);
   }
