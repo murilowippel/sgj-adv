@@ -40,7 +40,10 @@
           <div class="col-md-12" style="text-align: right;">
             <a href="<?= base_url("atualizacoes/") ?><?= $idprocesso ?>" class="btn btn-danger">Voltar</a>
             <a href="<?= base_url("atualizacoes/novo/") ?><?= $idprocesso ?>" class="btn btn-primary">Limpar</a>
+            <?php
+            if ($this->session->userdata['usuario_logado']['nvlacesso'] != "C") { ?>
             <button type="submit" class="btn btn-success" style="margin-right: 11px">Gravar</button>
+            <?php } ?>
           </div>
         
         </div>

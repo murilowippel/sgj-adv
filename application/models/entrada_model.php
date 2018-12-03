@@ -19,6 +19,13 @@ class Entrada_model extends CI_Model {
 
     return $entradas;
   }
+  
+  public function buscaEntradasPendentes(){
+    $sql = "SELECT * FROM shcliente.entrada WHERE datavencimento >= CURRENT_DATE AND datapagamento is null";
+    $query = $this->db->query($sql);
+
+    return $query->result_array();
+  }
 
   public function salva($entrada) {
     $this->db->insert("shcliente.entrada", $entrada);

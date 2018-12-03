@@ -6,7 +6,10 @@
     <hr>
     <div style="width: 100%; text-align: right;">
     <a href="<?= base_url("/atualizacoes/novo") ?>" class="btn btn-success">Gerar Relatório</a>
-      <a href="<?= base_url("/atualizacoes/novo/") ?><?= $idprocesso ?>" class="btn btn-primary">Novo</a>
+    <?php
+      if ($this->session->userdata['usuario_logado']['nvlacesso'] != "C") { ?>
+    <a href="<?= base_url("/atualizacoes/novo/") ?><?= $idprocesso ?>" class="btn btn-primary">Novo</a>
+    <?php } ?>
     </div>
     <div class="clear"></div>
     <hr>
@@ -23,7 +26,10 @@
                 <th>Data de atualização</th>
                 <th>Arquivo</th>
                 <th></th>
-                <th></th>
+                <?php
+                if ($this->session->userdata['usuario_logado']['nvlacesso'] != "C") { ?>
+                  <th></th>
+                <?php } ?>
               </tr>
             </thead>
             <tbody>
@@ -35,11 +41,14 @@
                   <td><?= dataPostgresParaPtBr($atualizacao['dataatualizacao']) ?></td>
                   <td><a href="<?= base_url("/atualizacoes/download/").$atualizacao['nmarquivo'].".".$atualizacao['extarquivo'] ?>" class="btn "><i class="fa fa-download"></i> Baixar</a></td>
                   <td style="text-align: center; width: 122px;"><a href="<?= base_url("/atualizacoes/editar/") ?><?= $atualizacao['idatualizacaoprocesso'] ?>" class="btn btn-primary">Editar</a></td>
+                  <?php
+                    if ($this->session->userdata['usuario_logado']['nvlacesso'] != "C") { ?>
                   <td style="text-align: center; width: 122px;">
                     <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deletaModal<?= $atualizacao['idatualizacaoprocesso'] ?>">
                       Excluir
                     </button>
                   </td>
+                  <?php } ?>
                 </tr>
                 
                 <div class="modal fade" id="deletaModal<?= $atualizacao['idatualizacaoprocesso'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

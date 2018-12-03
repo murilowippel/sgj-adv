@@ -60,7 +60,9 @@ class Usuarios extends CI_Controller {
     
     $this->form_validation->set_rules("nome", "nome", "required");
     $this->form_validation->set_rules("email", "e-mail", "required");
-    $this->form_validation->set_rules("senha", "senha", "required");
+    if($this->input->post("idusuario") == ""){
+      $this->form_validation->set_rules("senha", "senha", "required");
+    }
     $this->form_validation->set_rules("cpf", "cpf", "required");
     $this->form_validation->set_rules("nvlacesso", "tipo de usuário", "required");
     $this->form_validation->set_error_delimiters("<p class='alert alert-danger'>", "</p>");
@@ -81,11 +83,18 @@ class Usuarios extends CI_Controller {
       }
 
       if ($idusuario) {
+        $usuario1 = $this->usuario_model->buscaUsuario($idusuario);
+        if($this->input->post("senha") == ""){
+          $senha = $usuario1['senha'];
+        } else {
+          $senha = md5($this->input->post("senha"));
+        }
+        
         //Carrega os valores dos campos do formulário
         $usuario = array(
             "nome" => $this->input->post("nome"),
             "email" => $this->input->post("email"),
-            "senha" => md5($this->input->post("senha")),
+            "senha" => $senha,
             "cpf" => $this->input->post("cpf"),
             "nvlacesso" => $this->input->post("nvlacesso"),
             "liberado" => $liberado,

@@ -9,6 +9,7 @@ class Usuario_model extends CI_Model {
   public function buscaPorEmailESenha($email, $senha) {
     $this->db->where("email", $email);
     $this->db->where("senha", $senha);
+    $this->db->where("liberado", "1");
     $usuario = $this->db->get("shadmin.usuario")->row_array();
 
     return $usuario;

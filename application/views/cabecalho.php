@@ -10,8 +10,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="Murilo Henrique Wippel">
-    <link rel="icon" href="<?=base_url('img')?>/favicon.png" type="image/png">
-    
+    <link rel="icon" href="<?= base_url('img') ?>/favicon.png" type="image/png">
+
     <title><?php echo $titulopagina ?> - SGJ</title>
 
     <link href="<?= base_url("css/bootstrap.min.css") ?>" rel="stylesheet">
@@ -21,7 +21,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <link href="<?= base_url("css/sb-admin.css") ?>" rel="stylesheet">
     <link href="<?= base_url("css/sgj-adv.css") ?>" rel="stylesheet">
     <link rel="stylesheet" href="https://www.jquery-az.com/boots/css/bootstrap-multiselect/bootstrap-multiselect.css" type="text/css">
-    
+
   </head>
 
   <body id="page-top">
@@ -36,14 +36,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
       <!-- Navbar Search -->
       <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
-<!--        <div class="input-group">
-          <input type="text" class="form-control" placeholder="Buscar cliente..." aria-label="Search" aria-describedby="basic-addon2">
-          <div class="input-group-append">
-            <button class="btn btn-primary" type="button">
-              <i class="fas fa-search"></i>
-            </button>
-          </div>
-        </div>-->
+        <!--        <div class="input-group">
+                  <input type="text" class="form-control" placeholder="Buscar cliente..." aria-label="Search" aria-describedby="basic-addon2">
+                  <div class="input-group-append">
+                    <button class="btn btn-primary" type="button">
+                      <i class="fas fa-search"></i>
+                    </button>
+                  </div>
+                </div>-->
       </form>
 
       <!-- Navbar -->
@@ -69,10 +69,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <i class="fas fa-user-circle fa-fw"></i>
           </a>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+            <?php
+            if ($this->session->userdata['usuario_logado']['nvlacesso'] != "C") { ?>
             <a class="dropdown-item" href="<?= base_url("usuarios") ?>">Configurações</a>
             <div class="dropdown-divider"></div>
+            <?php } ?>
             <a class="dropdown-item" href="" data-toggle="modal" data-target="#logoutModal">Sair</a>
           </div>
+          
         </li>
       </ul>
 
@@ -88,12 +92,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <span>Página Inicial</span>
           </a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="<?= base_url("clientes") ?>">
-            <i class="fas fa-fw fa-users"></i>
-            <span>Clientes</span>
+        <?php
+        if ($this->session->userdata['usuario_logado']['nvlacesso'] != "C") { ?>
+          <li class = "nav-item">
+          <a class = "nav-link" href = "<?= base_url("clientes") ?>">
+          <i class = "fas fa-fw fa-users"></i>
+          <span>Clientes</span>
           </a>
-        </li>
+          </li>
+        <?php } ?>
+        <?php
+        if ($this->session->userdata['usuario_logado']['nvlacesso'] != "C") { ?>
         <li class="nav-item dropdown"><!--active-->
           <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <i class="fas fa-fw fa-file-alt"></i>
@@ -104,18 +113,24 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <a class="dropdown-item" href="<?= base_url("contratos") ?>">Contratos</a>
           </div>
         </li>
+        <?php } ?>
         <li class="nav-item">
           <a class="nav-link" href="<?= base_url("processos") ?>">
             <i class="fas fa-fw fa-file-alt"></i>
             <span>Processos</span>
           </a>
         </li>
+        <?php
+        if ($this->session->userdata['usuario_logado']['nvlacesso'] != "C") { ?>
         <li class="nav-item">
           <a class="nav-link" href="<?= base_url("agenda") ?>">
             <i class="fas fa-fw fa-calendar-alt"></i>
             <span>Agenda</span>
           </a>
         </li>
+        <?php } ?>
+        <?php
+        if ($this->session->userdata['usuario_logado']['nvlacesso'] != "C") { ?>
         <li class="nav-item dropdown"><!--active-->
           <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <i class="fas fa-fw fa-dollar-sign"></i>
@@ -139,4 +154,5 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <span>Usuários</span>
           </a>
         </li>
+        <?php } ?>
       </ul>

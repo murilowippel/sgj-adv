@@ -4,7 +4,10 @@
     <hr>
     <!--Conteúdo da Página-->
     <div style="width: 100%; text-align: right;">
+      <?php
+        if ($this->session->userdata['usuario_logado']['nvlacesso'] != "C") { ?>
       <a href="<?= base_url("logacessos") ?>" style="margin-right: 20px; margin-bottom: 20px;" class="btn btn-warning">Registro de Acessos</a>
+      <?php } ?>
       <a href="<?= base_url("usuarios/novo") ?>" style="margin-right: 20px; margin-bottom: 20px;" class="btn btn-primary">Novo Usuário</a>
     </div>
     <div class="clear"></div>

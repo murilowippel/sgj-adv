@@ -3,9 +3,12 @@
     <!-- Page Content -->
     <h1>Processos</h1>
     <hr>
+    <?php
+      if ($this->session->userdata['usuario_logado']['nvlacesso'] != "C") { ?>
     <div style="width: 100%; text-align: right;">
       <a href="<?= base_url("/processos/novo") ?>" class="btn btn-primary">Novo</a>
     </div>
+    <?php } ?>
     <div class="clear"></div>
     <?php if ($this->session->flashdata("success")) : ?>
       <p class="alert alert-success"><?= $this->session->flashdata("success") ?></p>
@@ -30,7 +33,10 @@
                 <th>Descrição</th>
                 <th></th>
                 <th></th>
+                <?php
+                if ($this->session->userdata['usuario_logado']['nvlacesso'] != "C") { ?>
                 <th></th>
+                <?php } ?>
               </tr>
             </thead>
             <tbody>
@@ -45,11 +51,14 @@
                     <td><?= $processo['descricao'] ?></td>
                     <td style="text-align: center;"><a href="<?= base_url("/atualizacoes/") ?><?= $processo['idprocesso'] ?>" class="btn btn-light">Atualizações</a></td>
                     <td style="text-align: center;"><a href="<?= base_url("/processos/") ?><?= $processo['idprocesso'] ?>" class="btn btn-primary">Editar</a></td>
+                    <?php
+                    if ($this->session->userdata['usuario_logado']['nvlacesso'] != "C") { ?>
                     <td style="text-align: center;">
                       <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deletaModal<?= $processo['idprocesso'] ?>">
                         Excluir
                       </button>
                     </td>
+                    <?php } ?>
                   </tr>
                   
                   <div class="modal fade" id="deletaModal<?= $processo['idprocesso'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

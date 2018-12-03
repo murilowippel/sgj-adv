@@ -85,7 +85,7 @@ class Contratos extends CI_Controller {
     //Verificar se possui algum processos com o IDCLIENTE
     $processos = $this->processo_model->buscaProcessoContrato($idcontrato);
     if (is_array($processos) && count($processos) > 0) {
-      $this->session->set_flashdata("danger", "O cliente selecionado possui processos cadastrados!");
+      $this->session->set_flashdata("danger", "O contrato selecionado possui processos cadastrados!");
       //Redirecionando pra listagem
       redirect("/contratos");
     } else {

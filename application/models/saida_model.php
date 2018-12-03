@@ -19,6 +19,13 @@ class Saida_model extends CI_Model {
 
     return $saidas;
   }
+  
+  public function buscaSaidasPendentes(){
+    $sql = "SELECT * FROM shcliente.saida WHERE datavencimento >= CURRENT_DATE AND datapagamento is null";
+    $query = $this->db->query($sql);
+
+    return $query->result_array();
+  }
 
   public function salva($saida) {
     $this->db->insert("shcliente.saida", $saida);
