@@ -156,27 +156,24 @@ class Agenda extends CI_Controller {
           
           $this->load->model("usuario_model");
           $usuario = $this->usuario_model->BuscaUsuario($notificado);
-          
+          $mensagem = "Você tem um novo comproisso: ".$compromisso['titulo']. " no dia ".$datacompromisso.". Veja mais detalhes no sistema SGJ - Sistema de Gestão Jurídica";
           //Enviar e-mail
           $config["protocol"] = "smtp";
-          $config["smtp_host"] = "smtp.gmail.com";
+          $config["smtp_host"] = "ssl://smtp.gmail.com";
           $config["smtp_user"] = "noreplysisadv@gmail.com";
           $config["smtp_pass"] = "xico123#";
           $config["charset"] = "utf-8";
           $config["mailtype"] = "html";
           $config["newline"] = "\r\n";
-          $config["smtp_port"] = "587";
+          $config["smtp_port"] = "465";
           $this->email->initialize($config);
-
+          
           $this->email->from("noreplysisadv@gmail", "SGJ - Sistema de Gestão Jurídica");
           $this->email->to($usuario['email']);
-          $this->email->subject("Novo Compromisso");
-          $this->email->message("Você tem um novo comproisso: {$compromisso['titulo']} no dia {$datacompromisso}. Veja mais detalhes no sistema SGJ - Sistema de Gestão Jurídica");
+          $this->email->subject("Novo Compromisso - SGJ Sistema de Gestão Jurídica");
+          $this->email->message($mensagem);
           
-          if($this->email->send()){
-            echo "ok";
-            exit;
-          }
+          $this->email->send();
         }
 
         $this->agenda_model->salva($compromisso);
