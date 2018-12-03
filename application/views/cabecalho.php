@@ -48,7 +48,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
       <!-- Navbar -->
       <ul class="navbar-nav ml-auto ml-md-0">
-        <li class="nav-item dropdown no-arrow mx-1">
+<!--        <li class="nav-item dropdown no-arrow mx-1">
           <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <i class="fas fa-bell fa-fw"></i>
             <span class="badge badge-danger">1+</span>
@@ -58,7 +58,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <span class="pull-right text-muted small"><em>Recebido em 10/10/2010 - 10:10</em>
             </span>
           </div>
-        </li>
+        </li>-->
         <li class="nav-item dropdown no-arrow mx-1">
           <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <?= $this->session->userdata['usuario_logado']['nome']; ?>

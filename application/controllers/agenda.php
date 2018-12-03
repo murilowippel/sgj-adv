@@ -137,6 +137,48 @@ class Agenda extends CI_Controller {
           "idusuarioresponsavel" => $usresp
         );
 
+        //Gerar notificação
+        $notificados = explode(",", $usresp);
+        
+        foreach ($notificados as $key => $notificado) {
+          $this->load->model("notificacao_model");
+          $query = $this->db->query("SELECT nextval('shcliente.sqidnotificacao')");
+          $idnotificacao = $query->row_array();
+          //Carrega os valores dos campos do formulário
+          $notificacao = array(
+            "idnotificacao" => $idnotificacao['nextval'],
+            "titulo" => "Você foi relacionado ao compromisso " . $this->input->post("titulo"),
+            "dataenvio" => date('Y-m-d H:i:s'),
+            "idusuariodestino" => $notificado
+          );
+
+          $this->notificacao_model->salva($notificacao);
+          
+          $this->load->model("usuario_model");
+          $usuario = $this->usuario_model->BuscaUsuario($notificado);
+          
+          //Enviar e-mail
+          $config["protocol"] = "smtp";
+          $config["smtp_host"] = "smtp.gmail.com";
+          $config["smtp_user"] = "noreplysisadv@gmail.com";
+          $config["smtp_pass"] = "xico123#";
+          $config["charset"] = "utf-8";
+          $config["mailtype"] = "html";
+          $config["newline"] = "\r\n";
+          $config["smtp_port"] = "587";
+          $this->email->initialize($config);
+
+          $this->email->from("noreplysisadv@gmail", "SGJ - Sistema de Gestão Jurídica");
+          $this->email->to($usuario['email']);
+          $this->email->subject("Novo Compromisso");
+          $this->email->message("Você tem um novo comproisso: {$compromisso['titulo']} no dia {$datacompromisso}. Veja mais detalhes no sistema SGJ - Sistema de Gestão Jurídica");
+          
+          if($this->email->send()){
+            echo "ok";
+            exit;
+          }
+        }
+
         $this->agenda_model->salva($compromisso);
         $this->session->set_flashdata("success", "Compromisso gravado com sucesso. Os usuários serão notificados por e-mail!");
       }

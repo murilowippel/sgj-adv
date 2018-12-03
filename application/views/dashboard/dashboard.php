@@ -48,26 +48,15 @@
                   <?php } ?>
                   <?php foreach ($entradas as $entrada) : ?>
                     <a href ="<?= base_url("/entradas/") ?><?= $entrada['identrada'] ?>" class = "list-group-item">
-                      <i class = "fa fa-arrow-right fa-fw""></i><?= $entrada['descricao'] ?>
+                      <i class = "fa fa-arrow-right fa-fw"></i><?= $entrada['descricao'] ?>
                     </a>
                   <?php endforeach ?>
 
                   <?php foreach ($saidas as $saida) : ?>
                     <a href ="<?= base_url("/saidas/") ?><?= $saida['idsaida'] ?>" class = "list-group-item">
-                      <i class = "fa fa-arrow-left fa-fw""></i><?= $saida['descricao'] ?>
+                      <i class = "fa fa-arrow-left fa-fw"></i><?= $saida['descricao'] ?>
                     </a>
                   <?php endforeach ?>
-
-                  <!--                <a href="#" class="list-group-item">
-                                    <i class="fa fa-arrow-right fa-fw"></i> Receber honorários João Silva
-                                  </a>
-                  
-                                  <a href="#" class="list-group-item">
-                                    <i class="fa fa-arrow-right fa-fw"></i> Receber honorários Maria Silva
-                                  </a>
-                                  <a href="#" class="list-group-item">
-                                    <i class="fa fa-arrow-left fa-fw"></i> Pagar conserto do banheiro
-                                  </a>-->
                 </div>
               </div>
             </div>
@@ -81,26 +70,11 @@
                 Notificações</div>
               <div class="panel-body">
                 <div class="list-group">
-                  <a href="#" class="list-group-item">
-                    <i class="fa fa-comment fa-fw"></i> Você tem um novo compromisso
-                    <span class="pull-right text-muted small"><em>Recebido em 10/10/2010 - 10:10</em>
-                    </span>
-                  </a>
-                  <a href="#" class="list-group-item">
-                    <i class="fa fa-comment fa-fw"></i> Você tem um novo compromisso
-                    <span class="pull-right text-muted small"><em>Recebido em 10/10/2010 - 10:10</em>
-                    </span>
-                  </a>
-                  <a href="#" class="list-group-item">
-                    <i class="fa fa-comment fa-fw"></i> Você tem um novo compromisso
-                    <span class="pull-right text-muted small"><em>Recebido em 10/10/2010 - 10:10</em>
-                    </span>
-                  </a>
-                  <a href="#" class="list-group-item">
-                    <i class="fa fa-comment fa-fw"></i> Você tem um novo compromisso
-                    <span class="pull-right text-muted small"><em>Recebido em 10/10/2010 - 10:10</em>
-                    </span>
-                  </a>
+                  <?php foreach ($notificacoes as $notificacao) : ?>
+                    <a href="#" class = "list-group-item">
+                      <i class="fa fa-comment fa-fw"></i><?= $notificacao['titulo'] ?>
+                    </a>
+                  <?php endforeach ?>
                 </div>
               </div>
             </div>
