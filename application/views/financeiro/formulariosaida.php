@@ -44,12 +44,12 @@
           <div class="form-row col-md-12">
             <div class="form-group col-md-4">
               <label for="datapagamento"><strong>Data de Pagamento: </strong></label>
-              <input type="text" name="datapagamento" class="form-control" id="datapagamento" placeholder="" value="<?php if (isset($saida)) {echo dataPostgresParaPtBr($saida['datapagamento']);}?>">
+              <input type="text" name="datapagamento" class="form-control" id="datapagamento" placeholder="" value="<?php if (isset($saida) && $saida['datapagamento'] != "") {echo dataPostgresParaPtBr($saida['datapagamento']);}?>">
               <?=form_error("datainiciovigencia")?>
             </div>
             <div class="form-group col-md-4">
               <label for="datavencimento"><strong>Data de Vencimento:</strong></label>
-              <input type="text" name="datavencimento" class="form-control" id="datavencimento" placeholder="" value="<?php if (isset($saida)) {echo dataPostgresParaPtBr($saida['datavencimento']);}?>">
+              <input type="text" name="datavencimento" class="form-control" id="datavencimento" placeholder="" value="<?php if (isset($saida) && $saida['datavencimento'] != "") {echo dataPostgresParaPtBr($saida['datavencimento']);}?>">
               <?=form_error("datavencimento")?>
             </div>
           </div>
