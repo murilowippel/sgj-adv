@@ -1,6 +1,10 @@
 <div id="content-wrapper">
   <div class="container-fluid">
-    <h1>Página Inicial</h1>
+    <?php if ($this->session->userdata['usuario_logado']['nvlacesso'] != "C") { ?>
+      <h1>Página Inicial</h1>
+    <?php } else { ?>
+      <h1>Área do Cliente</h1>
+    <?php } ?>
     <hr>
     <!--Conteúdo da Página-->
 

@@ -179,6 +179,25 @@ class Atualizacoes extends CI_Controller {
           "nmarquivo" => $nmarquivo,
           "extarquivo" => $extarquivo
         );
+        
+//        $mensagem = "Houve uma atualização em um de seus casos/processos. Acesse o sistem SGJ - Sistema de Gestão Jurídica para verificar";
+//        //Enviar e-mail
+//        $config["protocol"] = "smtp";
+//        $config["smtp_host"] = "ssl://smtp.gmail.com";
+//        $config["smtp_user"] = "noreplysisadv@gmail.com";
+//        $config["smtp_pass"] = "xico123#";
+//        $config["charset"] = "utf-8";
+//        $config["mailtype"] = "html";
+//        $config["newline"] = "\r\n";
+//        $config["smtp_port"] = "465";
+//        $this->email->initialize($config);
+//
+//        $this->email->from("noreplysisadv@gmail", "SGJ - Sistema de Gestão Jurídica");
+//        $this->email->to($this->input->post("email"));
+//        $this->email->subject("Atualização de Caso/Processo - SGJ Sistema de Gestão Jurídica");
+//        $this->email->message($mensagem);
+//
+//        $this->email->send();
 
         $this->atualizacao_model->salva($atualizacao);
         $this->session->set_flashdata("success", "Atualização de Processo gravada com sucesso!");

@@ -1,4 +1,5 @@
 <?php
+
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 /**
@@ -22,7 +23,7 @@ class Usuarios extends CI_Controller {
     //Carrega a view
     $this->load->template('usuarios/usuarios.php', $dados, $usuarios);
   }
-  
+
   //Função para abrir o formulário de cadastro de clientes
   public function novo() {
     //Valida a sessão
@@ -34,7 +35,7 @@ class Usuarios extends CI_Controller {
     //Carrega a view
     $this->load->template('usuarios/formulario.php', $dados);
   }
-  
+
   //Função para abrir editar um tipo de contrato
   public function editar($idusuario) {
     //Valida a sessão
@@ -50,17 +51,17 @@ class Usuarios extends CI_Controller {
     //Carrega a view
     $this->load->template('usuarios/formulario.php', $dados, $usuario);
   }
-  
+
   public function gravar() {
     //Valida a sessão
     autoriza();
-    
+
     //Atribui o título da página
     $dados['titulopagina'] = "Cadastro de Usuários";
-    
+
     $this->form_validation->set_rules("nome", "nome", "required");
     $this->form_validation->set_rules("email", "e-mail", "required");
-    if($this->input->post("idusuario") == ""){
+    if ($this->input->post("idusuario") == "") {
       $this->form_validation->set_rules("senha", "senha", "required");
     }
     $this->form_validation->set_rules("cpf", "cpf", "required");
@@ -71,12 +72,12 @@ class Usuarios extends CI_Controller {
     if ($sucesso) {
       //Carregando o model
       $this->load->model("usuario_model");
-      
+
       //Carrega o idusuario se houver
       $idusuario = $this->input->post("idusuario");
-      
+
       //Verifica se o acesso ao usuário está liberado SIM / NÃO
-      if($this->input->post("liberado") == "on"){
+      if ($this->input->post("liberado") == "on") {
         $liberado = '1';
       } else {
         $liberado = '0';
@@ -84,12 +85,12 @@ class Usuarios extends CI_Controller {
 
       if ($idusuario) {
         $usuario1 = $this->usuario_model->buscaUsuario($idusuario);
-        if($this->input->post("senha") == ""){
+        if ($this->input->post("senha") == "") {
           $senha = $usuario1['senha'];
         } else {
           $senha = md5($this->input->post("senha"));
         }
-        
+
         //Carrega os valores dos campos do formulário
         $usuario = array(
             "nome" => $this->input->post("nome"),
@@ -99,7 +100,7 @@ class Usuarios extends CI_Controller {
             "nvlacesso" => $this->input->post("nvlacesso"),
             "liberado" => $liberado,
         );
-        
+
         $this->usuario_model->salvaEditado($usuario, $idusuario);
         $this->session->set_flashdata("success", "Dados atualizados com sucesso!");
       } else {
@@ -117,6 +118,25 @@ class Usuarios extends CI_Controller {
             "liberado" => $liberado,
         );
 
+        $mensagem = "Você possui um usuário no sistema SGJ - Sistema de Gestão Jurídica. Seguem suas informações: <br> E-mail: ".$this->input->post("email")."<br> Senha: ".$this->input->post("senha");
+        //Enviar e-mail
+        $config["protocol"] = "smtp";
+        $config["smtp_host"] = "ssl://smtp.gmail.com";
+        $config["smtp_user"] = "noreplysisadv@gmail.com";
+        $config["smtp_pass"] = "xico123#";
+        $config["charset"] = "utf-8";
+        $config["mailtype"] = "html";
+        $config["newline"] = "\r\n";
+        $config["smtp_port"] = "465";
+        $this->email->initialize($config);
+
+        $this->email->from("noreplysisadv@gmail", "SGJ - Sistema de Gestão Jurídica");
+        $this->email->to($this->input->post("email"));
+        $this->email->subject("Acesso - SGJ Sistema de Gestão Jurídica");
+        $this->email->message($mensagem);
+
+        $this->email->send();
+
         $this->usuario_model->salva($usuario);
         $this->session->set_flashdata("success", "Usuário criado com sucesso!");
       }
@@ -126,7 +146,7 @@ class Usuarios extends CI_Controller {
       $this->load->template("usuarios/formulario.php", $dados);
     }
   }
-  
+
   //Função para abrir o formulário de cadastro de clientes
   public function logacessos() {
     //Valida a sessão
