@@ -13,8 +13,8 @@ class Agenda_model extends CI_Model {
     return $compromisso;
   }
   
-  public function buscaCompromissosDia(){
-    $sql = "SELECT * FROM shcliente.compromisso WHERE datacompromisso = CURRENT_DATE";
+  public function buscaCompromissosDia($idusuario){
+    $sql = "SELECT * FROM shcliente.compromisso WHERE datacompromisso = CURRENT_DATE AND idusuarioresponsavel LIKE '%".$idusuario."%' ";
     $query = $this->db->query($sql);
 
     return $query->result_array();
