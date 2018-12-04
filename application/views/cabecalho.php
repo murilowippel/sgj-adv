@@ -15,12 +15,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <title><?php echo $titulopagina ?> - SGJ</title>
 
     <link href="<?= base_url("css/bootstrap.min.css") ?>" rel="stylesheet">
-    <!--<link href="<?= base_url("fontawesome-free/css/all.min.css") ?>" rel="stylesheet" type="text/css">-->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <link href="<?= base_url("fontawesome-free/css/all.min.css") ?>" rel="stylesheet" type="text/css">
+    <!--<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">-->
     <link href="<?= base_url("css/dataTables.bootstrap4.css") ?>" rel="stylesheet">
     <link href="<?= base_url("css/sb-admin.css") ?>" rel="stylesheet">
     <link href="<?= base_url("css/sgj-adv.css") ?>" rel="stylesheet">
-    <link rel="stylesheet" href="https://www.jquery-az.com/boots/css/bootstrap-multiselect/bootstrap-multiselect.css" type="text/css">
+    <link href="<?= base_url("css/bootstrap-multiselect.css") ?>" rel="stylesheet">
+    <!--<link rel="stylesheet" href="https://www.jquery-az.com/boots/css/bootstrap-multiselect/bootstrap-multiselect.css" type="text/css">;-->
 
   </head>
 
