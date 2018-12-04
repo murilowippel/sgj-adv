@@ -1,6 +1,7 @@
 <?php
 
 defined('BASEPATH') OR exit('No direct script access allowed');
+require_once("fpdf/fpdf.php");
 
 /**
  * Controller para ações da página inicial do sistema
@@ -134,6 +135,52 @@ class Saidas extends CI_Controller {
     } else {
       $this->load->template("financeiro/formulariosaida.php", $dados);
     }
+  }
+  
+  public function geraRelatorio() {
+    $pdf = new FPDF("P", "pt", "A4");
+    $pdf->AddPage();
+
+    //Carrega a lista de saídas
+    $this->load->model("saida_model");
+    $saidas = $this->saida_model->buscaTodosData();
+    $pdf->SetFont('arial', 'B', 12);
+    $pdf->Cell(0, 5, "Relatório de Saídas", 0, 1, 'L');
+    $pdf->Ln(8);
+    $pdf->Ln(8);
+    $pdf->Ln(8);
+    $pdf->Ln(8);
+    if (is_array($saidas) && count($saidas) > 0) {
+      foreach ($saidas as $saida) {
+        $pdf->SetFont('arial', 'B', 12);
+        $pdf->Cell(0, 5, "Descrição:".$saida['descricao'], 0, 1, 'L');
+        $pdf->Ln(8);
+        $pdf->Ln(8);
+        $pdf->Cell(0, 5, "Valor: R$ ".$saida['valor'], 0, 1, 'L');
+        $pdf->Ln(8);
+        $pdf->Ln(8);
+        $datapagamento = "";
+        if($saida['datapagamento'] != ""){
+          $datapagamento = dataPostgresParaPtBr($saida['datapagamento']);
+        }
+        $pdf->Cell(0, 5, "Data de Pagamento: ".$datapagamento, 0, 1, 'L');
+        $pdf->Ln(8);
+        $pdf->Ln(8);
+        $datavencimento = "";
+        if($saida['datavencimento'] != ""){
+          $datavencimento = dataPostgresParaPtBr($saida['datavencimento']);
+        }
+        $pdf->Cell(0, 5, "Data de Vencimento: ".$datavencimento, 0, 1, 'L');
+        $pdf->Ln(8);
+        $pdf->Ln(8);
+        $pdf->Ln(8);
+        $pdf->Ln(8);
+        $pdf->Ln(8);
+        $pdf->Ln(8);
+      }
+    }
+
+    $pdf->Output("relatorio-saidas.pdf", "D");
   }
 
 }

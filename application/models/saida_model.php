@@ -5,6 +5,11 @@ class Saida_model extends CI_Model {
   public function buscaTodos() {
     return $this->db->get("shcliente.saida")->result_array();
   }
+  
+  public function buscaTodosData() {
+    $this->db->order_by("datavencimento", "ASC");
+    return $this->db->get("shcliente.saida")->result_array();
+  }
 
   public function buscaSaida($idsaida) {
     $this->db->where("idsaida", $idsaida);

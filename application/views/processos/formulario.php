@@ -75,11 +75,11 @@
           </div>
           
           <div class="col-md-12" style="text-align: right;">
-            <a href="<?= base_url("processos") ?>" class="btn btn-danger">Voltar</a>
-            <a href="<?= base_url("processos/novo") ?>" class="btn btn-primary">Limpar</a>
+            <a href="<?= base_url("processos") ?>" style="width: 74px;" class="btn btn-danger">Voltar</a>
+            <a href="<?= base_url("processos/novo") ?>" style="width: 74px;" class="btn btn-primary">Limpar</a>
             <?php
               if ($this->session->userdata['usuario_logado']['nvlacesso'] != "C") { ?>
-            <button type="submit" class="btn btn-success" style="margin-right: 11px">Gravar</button>
+            <button type="submit" class="btn btn-success" style="width:74px;">Gravar</button>
              <?php } ?>
           </div>
         

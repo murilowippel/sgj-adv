@@ -1,6 +1,7 @@
 <?php
 
 defined('BASEPATH') OR exit('No direct script access allowed');
+require_once("fpdf/fpdf.php");
 
 /**
  * Controller para ações da página inicial do sistema
@@ -34,7 +35,7 @@ class Entradas extends CI_Controller {
     //Carregar os clientes
     $this->load->model("cliente_model");
     $informacoes['clientes'] = $this->cliente_model->buscaTodos();
-    
+
     //Carregar os centros de custos
     $this->load->model("centrocusto_model");
     $informacoes['centrocustos'] = $this->centrocusto_model->buscaTodos();
@@ -65,7 +66,7 @@ class Entradas extends CI_Controller {
     //Carrega a view
     $this->load->template('financeiro/formularioentrada.php', $dados, $informacoes);
   }
-  
+
   //Função para excluir um processo
   public function deletar() {
     //Valida a sessão
@@ -81,7 +82,7 @@ class Entradas extends CI_Controller {
     $this->session->set_flashdata("success", "Entrada excluída com sucesso!");
     redirect("/entradas");
   }
-  
+
   public function gravar() {
     //Valida a sessão
     autoriza();
@@ -97,7 +98,7 @@ class Entradas extends CI_Controller {
     if ($sucesso) {
       $this->load->model("entrada_model");
       $identrada = $this->input->post("identrada");
-      
+
       //validar datapagamento e datavencimento
       if ($this->input->post("datapagamento") == "") {
         $datapagamento = NULL;
@@ -109,14 +110,14 @@ class Entradas extends CI_Controller {
       } else {
         $datavencimento = $this->input->post("datavencimento");
       }
-      
+
       //validar idcliente
-      if ($this->input->post("idcliente") == ""){
+      if ($this->input->post("idcliente") == "") {
         $idcliente = NULL;
       } else {
         $idcliente = $this->input->post("idcliente");
       }
-      
+
       if ($identrada) {
         //Carrega os valores dos campos do formulário
         $entrada = array(
@@ -153,6 +154,52 @@ class Entradas extends CI_Controller {
     } else {
       $this->load->template("financeiro/formularioentrada.php", $dados);
     }
+  }
+
+  public function geraRelatorio() {
+    $pdf = new FPDF("P", "pt", "A4");
+    $pdf->AddPage();
+
+    //Carrega a lista de entradas
+    $this->load->model("entrada_model");
+    $entradas = $this->entrada_model->buscaTodosData();
+    $pdf->SetFont('arial', 'B', 12);
+    $pdf->Cell(0, 5, "Relatório de Entradas", 0, 1, 'L');
+    $pdf->Ln(8);
+    $pdf->Ln(8);
+    $pdf->Ln(8);
+    $pdf->Ln(8);
+    if (is_array($entradas) && count($entradas) > 0) {
+      foreach ($entradas as $entrada) {
+        $pdf->SetFont('arial', 'B', 12);
+        $pdf->Cell(0, 5, "Descrição:".$entrada['descricao'], 0, 1, 'L');
+        $pdf->Ln(8);
+        $pdf->Ln(8);
+        $pdf->Cell(0, 5, "Valor: R$ ".$entrada['valor'], 0, 1, 'L');
+        $pdf->Ln(8);
+        $pdf->Ln(8);
+        $datapagamento = "";
+        if($entrada['datapagamento'] != ""){
+          $datapagamento = dataPostgresParaPtBr($entrada['datapagamento']);
+        }
+        $pdf->Cell(0, 5, "Data de Pagamento: ".$datapagamento, 0, 1, 'L');
+        $pdf->Ln(8);
+        $pdf->Ln(8);
+        $datavencimento = "";
+        if($entrada['datavencimento'] != ""){
+          $datavencimento = dataPostgresParaPtBr($entrada['datavencimento']);
+        }
+        $pdf->Cell(0, 5, "Data de Vencimento: ".$datavencimento, 0, 1, 'L');
+        $pdf->Ln(8);
+        $pdf->Ln(8);
+        $pdf->Ln(8);
+        $pdf->Ln(8);
+        $pdf->Ln(8);
+        $pdf->Ln(8);
+      }
+    }
+
+    $pdf->Output("relatorio-entradas.pdf", "D");
   }
 
 }

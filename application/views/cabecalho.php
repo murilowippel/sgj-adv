@@ -156,3 +156,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         </li>
         <?php } ?>
       </ul>
+      <script src="<?= base_url("js/jquery.min.js") ?>"></script>
+      <script type="text/javascript">
+        $(document).ready(function () {
+          var largura = $(window).width();
+          
+          if(largura < 780){
+            $("#sidebarToggle").click();
+          }
+          $( window ).resize(function() {
+            $("#sidebarToggle").click();
+          });
+          
+          
+        });
+      </script>
