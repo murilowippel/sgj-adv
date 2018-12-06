@@ -154,12 +154,12 @@ class Atualizacoes extends CI_Controller {
 
         //Carrega os valores dos campos do formulário
         $atualizacao = array(
-          "idprocesso" => $this->input->post("idprocesso"),
-          "titulo" => $this->input->post("titulo"),
-          "dataatualizacao" => $this->input->post("dataatualizacao"),
-          "descricao" => $this->input->post("descricao"),
-          "nmarquivo" => $nmarquivo,
-          "extarquivo" => $extarquivo
+            "idprocesso" => $this->input->post("idprocesso"),
+            "titulo" => $this->input->post("titulo"),
+            "dataatualizacao" => $this->input->post("dataatualizacao"),
+            "descricao" => $this->input->post("descricao"),
+            "nmarquivo" => $nmarquivo,
+            "extarquivo" => $extarquivo
         );
 
         $this->atualizacao_model->salvaEditado($atualizacao, $idatualizacaoprocesso);
@@ -171,33 +171,44 @@ class Atualizacoes extends CI_Controller {
 
         //Carrega os valores dos campos do formulário
         $atualizacao = array(
-          "idatualizacaoprocesso" => $idatualizacaoprocesso['nextval'],
-          "idprocesso" => $this->input->post("idprocesso"),
-          "titulo" => $this->input->post("titulo"),
-          "dataatualizacao" => $this->input->post("dataatualizacao"),
-          "descricao" => $this->input->post("descricao"),
-          "nmarquivo" => $nmarquivo,
-          "extarquivo" => $extarquivo
+            "idatualizacaoprocesso" => $idatualizacaoprocesso['nextval'],
+            "idprocesso" => $this->input->post("idprocesso"),
+            "titulo" => $this->input->post("titulo"),
+            "dataatualizacao" => $this->input->post("dataatualizacao"),
+            "descricao" => $this->input->post("descricao"),
+            "nmarquivo" => $nmarquivo,
+            "extarquivo" => $extarquivo
         );
-        
-//        $mensagem = "Houve uma atualização em um de seus casos/processos. Acesse o sistem SGJ - Sistema de Gestão Jurídica para verificar";
-//        //Enviar e-mail
-//        $config["protocol"] = "smtp";
-//        $config["smtp_host"] = "ssl://smtp.gmail.com";
-//        $config["smtp_user"] = "noreplysisadv@gmail.com";
-//        $config["smtp_pass"] = "xico123#";
-//        $config["charset"] = "utf-8";
-//        $config["mailtype"] = "html";
-//        $config["newline"] = "\r\n";
-//        $config["smtp_port"] = "465";
-//        $this->email->initialize($config);
-//
-//        $this->email->from("noreplysisadv@gmail", "SGJ - Sistema de Gestão Jurídica");
-//        $this->email->to($this->input->post("email"));
-//        $this->email->subject("Atualização de Caso/Processo - SGJ Sistema de Gestão Jurídica");
-//        $this->email->message($mensagem);
-//
-//        $this->email->send();
+
+        //Carregar processo
+        $this->load->model("processo_model");
+        $processo = $this->processo_model->buscaProcesso($this->input->post("idprocesso"));
+
+        //Carregar cliente do processo
+        $this->load->model("cliente_model");
+        $cliente = $this->cliente_model->buscaCliente($processo['idcliente']);
+
+        if ($cliente['email'] != "") {
+          $mensagem = "Houve uma atualização em um de seus casos/processos. "
+                  . "Acesse o sistem SGJ - Sistema de Gestão Jurídica para verificar";
+          //Enviar e-mail
+          $config["protocol"] = "smtp";
+          $config["smtp_host"] = "ssl://smtp.gmail.com";
+          $config["smtp_user"] = "noreplysisadv@gmail.com";
+          $config["smtp_pass"] = "xico123#";
+          $config["charset"] = "utf-8";
+          $config["mailtype"] = "html";
+          $config["newline"] = "\r\n";
+          $config["smtp_port"] = "465";
+          $this->email->initialize($config);
+
+          $this->email->from("noreplysisadv@gmail", "SGJ - Sistema de Gestão Jurídica");
+          $this->email->to($cliente['email']);
+          $this->email->subject("Atualização de Caso/Processo - SGJ Sistema de Gestão Jurídica");
+          $this->email->message($mensagem);
+
+          $this->email->send();
+        }
 
         $this->atualizacao_model->salva($atualizacao);
         $this->session->set_flashdata("success", "Atualização de Processo gravada com sucesso!");

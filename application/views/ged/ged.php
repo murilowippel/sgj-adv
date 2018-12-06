@@ -23,7 +23,7 @@
               <tr>
                 <th>Nome</th>
                 <th>Data de Cadastro</th>
-                <th></th>
+                <th>Arquivo</th>
                 <th></th>
                 <th></th>
               </tr>

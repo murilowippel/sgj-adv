@@ -156,7 +156,7 @@ class Agenda extends CI_Controller {
           
           $this->load->model("usuario_model");
           $usuario = $this->usuario_model->BuscaUsuario($notificado);
-          $mensagem = "Você tem um novo comproisso: ".$compromisso['titulo']. " no dia ".$datacompromisso.". Veja mais detalhes no sistema SGJ - Sistema de Gestão Jurídica";
+          $mensagem = "Olá ".$usuario['nome'].". <br/> Você tem um novo comproisso: ".$compromisso['titulo']. " no dia ".$datacompromisso.". <br/> Veja mais detalhes no sistema SGJ - Sistema de Gestão Jurídica";
           //Enviar e-mail
           $config["protocol"] = "smtp";
           $config["smtp_host"] = "ssl://smtp.gmail.com";

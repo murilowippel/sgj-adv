@@ -5,7 +5,7 @@
     <h1>Atualizações - <?= $processo['titulo'] ?></h1>
     <hr>
     <div style="width: 100%; text-align: right;">
-    <a href="<?= base_url("/atualizacoes/novo") ?>" class="btn btn-success">Gerar Relatório</a>
+    <!--<a href="<?= base_url("/atualizacoes/novo") ?>" class="btn btn-success">Gerar Relatório</a>-->
     <?php
       if ($this->session->userdata['usuario_logado']['nvlacesso'] != "C") { ?>
     <a href="<?= base_url("/atualizacoes/novo/") ?><?= $idprocesso ?>" class="btn btn-primary">Novo</a>

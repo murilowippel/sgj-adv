@@ -5,6 +5,11 @@ class Entrada_model extends CI_Model {
   public function buscaTodos() {
     return $this->db->get("shcliente.entrada")->result_array();
   }
+  
+  public function buscaTodosData() {
+    $this->db->order_by("datavencimento", "ASC");
+    return $this->db->get("shcliente.entrada")->result_array();
+  }
 
   public function buscaEntrada($identrada) {
     $this->db->where("identrada", $identrada);

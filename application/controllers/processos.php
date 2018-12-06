@@ -10,17 +10,33 @@ class Processos extends CI_Controller {
   //Função para abrir a listagem de processos
   public function index() {
     autoriza();
-    
+
     //Atribui o título da página
     $dados['titulopagina'] = "Processos";
     
-    //Carrega a lista de processos
     $this->load->model("processo_model");
-    $processos['processos'] = $this->processo_model->buscaTodos();
+    $this->load->model("usuario_model");
+    $this->load->model("cliente_model");
+    
+    //Carregar usuário
+    $usuario = $this->usuario_model->buscaUsuario($this->session->userdata['usuario_logado']['idusuario']);
+    
+    //Buscar cliente pelo cpf do usuário
+    $cliente = $this->cliente_model->buscaClienteCpf($usuario['cpf']);
+    
+    if ($this->session->userdata['usuario_logado']['nvlacesso'] == "C") {
+      //Carregar processos pelo cpf
+      $processos['processos'] = $this->processo_model->buscaProcessoCliente($cliente['idcliente']);
+    } else {
+      //Carrega a lista de processos
+      $processos['processos'] = $this->processo_model->buscaTodos();
+    }
+
+
 
     //Carregando o model de clientes
     $this->load->model("cliente_model");
-    
+
     $this->load->template('processos/processos.php', $dados, $processos);
   }
 
@@ -43,7 +59,7 @@ class Processos extends CI_Controller {
     //Carrega a view
     $this->load->template('processos/formulario.php', $dados, $informacoes);
   }
-  
+
   //Função para abrir editar um processo
   public function editar($idprocesso) {
     //Valida a sessão
@@ -67,7 +83,7 @@ class Processos extends CI_Controller {
     //Carrega a view
     $this->load->template('processos/formulario.php', $dados, $informacoes);
   }
-  
+
   //Função para excluir um processo
   public function deletar() {
     //Valida a sessão
@@ -78,59 +94,59 @@ class Processos extends CI_Controller {
 
     //Carregar id e apagar registro com o id
     $idprocesso = $this->input->get('idprocesso');
-    
+
     //Variável para controle de fluxo
     $resultado = "";
-    
+
     //Verificar se possui alguma atualização com o IDPROCESSO
     $atualizacoes = $this->atualizacao_model->buscaTodosProcesso($idprocesso);
-    
-    if(is_array($atualizacoes) && count($atualizacoes) > 0){
+
+    if (is_array($atualizacoes) && count($atualizacoes) > 0) {
       $this->session->set_flashdata("danger", "O processo selecionado possui atualizações cadastrados!");
     } else {
       $resultado = "ok";
     }
-    
-    if($resultado == "ok"){
+
+    if ($resultado == "ok") {
       //Apagando o registro
       $this->processo_model->deleta($idprocesso);
       //Mensagem de sucesso
       $this->session->set_flashdata("success", "Processo excluído com sucesso!");
     }
-    
+
     redirect("/processos");
   }
-  
+
   public function gravar() {
     //Valida a sessão
     autoriza();
     //Atribui o título da página
     $dados['titulopagina'] = "Cadastro de Processo";
-    
-    $this->form_validation->set_rules("titulo","titulo","required");
-    $this->form_validation->set_rules("valorhonorario","valorhonorario","required");
+
+    $this->form_validation->set_rules("titulo", "titulo", "required");
+    $this->form_validation->set_rules("valorhonorario", "valorhonorario", "required");
     $this->form_validation->set_rules("idcontrato", "contrato", "required");
     $this->form_validation->set_rules("idcliente", "cliente", "required");
-    $this->form_validation->set_error_delimiters("<p class='alert alert-danger'>","</p>");
-    
+    $this->form_validation->set_error_delimiters("<p class='alert alert-danger'>", "</p>");
+
     //Valida se o campo de data de abertura e numero possui algum valor, senão atribui null
     if ($this->input->post("dataabertura") == "") {
       $dataabertura = NULL;
     } else {
       $dataabertura = $this->input->post("dataabertura");
     }
-    
+
     if ($this->input->post("numero") == "") {
       $numero = NULL;
     } else {
       $numero = $this->input->post("numero");
     }
-    
+
     $sucesso = $this->form_validation->run();
     if ($sucesso) {
       $this->load->model("processo_model");
       $idprocesso = $this->input->post("idprocesso");
-      
+
       if ($idprocesso) {
         //Carrega os valores dos campos do formulário
         $processo = array(
@@ -162,7 +178,7 @@ class Processos extends CI_Controller {
             "idusuariocriador" => $this->session->userdata['usuario_logado']['idusuario'],
             "idcontrato" => $this->input->post("idcontrato")
         );
-        
+
         $this->processo_model->salva($processo);
         $this->session->set_flashdata("success", "Processo gravado com sucesso!");
       }

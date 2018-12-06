@@ -26,7 +26,7 @@
           <table class="table table-striped" id="dataTable" width="100%" cellspacing="0">
             <thead>
               <tr>
-                <th>Titulo</th>
+                <th>Título</th>
                 <th>Nº do Processo</th>
                 <th>Cliente</th>
                 <th>Data de Abertura</th>

@@ -118,7 +118,7 @@ class Usuarios extends CI_Controller {
             "liberado" => $liberado,
         );
 
-        $mensagem = "Você possui um usuário no sistema SGJ - Sistema de Gestão Jurídica. Seguem suas informações: <br> E-mail: ".$this->input->post("email")."<br> Senha: ".$this->input->post("senha");
+        $mensagem = "Olá ".$this->input->post("nome").". <br> Você possui um usuário no sistema SGJ - Sistema de Gestão Jurídica. <br> Seguem suas informações: <br> E-mail: ".$this->input->post("email")."<br> Senha: ".$this->input->post("senha");
         //Enviar e-mail
         $config["protocol"] = "smtp";
         $config["smtp_host"] = "ssl://smtp.gmail.com";

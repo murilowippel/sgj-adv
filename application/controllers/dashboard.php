@@ -20,10 +20,10 @@ class Dashboard extends CI_Controller {
     
     $dados['titulopagina'] = "Página Inicial";
     
-    //Carregar compromissos do dia
-    $informacoes['compromissos'] = $this->agenda_model->buscaCompromissosDia();
-    
     $idusuario = $this->session->userdata['usuario_logado']['idusuario'];
+    
+    //Carregar compromissos do dia
+    $informacoes['compromissos'] = $this->agenda_model->buscaCompromissosDia($idusuario);
     
     //Carregar entradas e saídas que possuam data de vencimento e que a não possuam data de pagamento
     $informacoes['entradas'] = $this->entrada_model->buscaEntradasPendentes();
