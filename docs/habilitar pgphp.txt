@@ -1,5 +1,7 @@
-extension=php_pdo_pgsql.dll
-
-extension=php_pdo_sqlite.dll
-
-extension=php_pgsql.dll
+//No php.ini:
+1. Descomentar a linha:
+    extension=pdo_pgsql
+2. Adicionar os seguintes comandos:
+    extension=php_pdo_pgsql.dll
+    extension=php_pdo_sqlite.dll
+    extension=php_pgsql.dll
